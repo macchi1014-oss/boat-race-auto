@@ -204,7 +204,8 @@ let unmatched=0;
   if(!groups[level])groups[level]=[];
 groups[level].push(r);
 
-const score=Number(p.confidence_score);
+const scoreText=(p.confidence_score||"").trim();
+const score=scoreText===""?NaN:Number(scoreText);
 if(Number.isFinite(score)){
  if(!scoreTotals[level])scoreTotals[level]=0;
  if(!scoreCounts[level])scoreCounts[level]=0;
