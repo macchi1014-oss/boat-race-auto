@@ -592,13 +592,37 @@ const factorStats = Object.fromEntries(
       ([boatNo, boat]) => Number(boat.place_number) === 1
     )?.[0];
 
-    if (!(m || b) && actualWinner) {
-      const predictedFirsts = [...main, ...backup]
+        if (!(m || b) && actualWinner) {
+      const candidates = [...main, ...backup]
         .filter(Boolean)
-        .map(candidate => candidate.split("-")[0]);
+        .map(candidate => candidate.split("-"));
 
-      if (predictedFirsts.includes(String(actualWinner))) {
+      const correctAxisCandidates = candidates.filter(
+        parts => parts[0] === String(actualWinner)
+      );
+
+      if (correctAxisCandidates.length > 0) {
         axisCorrectMiss++;
+
+        const actualSecond = Object.entries(racers).find(
+          ([boatNo, boat]) => Number(boat.place_number) === 2
+        )?.[0];
+
+        const actualThird = Object.entries(racers).find(
+          ([boatNo, boat]) => Number(boat.place_number) === 3
+        )?.[0];
+
+        if (actualSecond && correctAxisCandidates.some(
+          parts => parts[1] === String(actualSecond)
+        )) {
+          secondCovered++;
+        }
+
+        if (actualThird && correctAxisCandidates.some(
+          parts => parts[2] === String(actualThird)
+        )) {
+          thirdCovered++;
+        }
       } else {
         axisMiss++;
       }
