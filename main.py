@@ -279,7 +279,7 @@ def record_prediction_snapshots(stadiums, prediction_map, now):
 
     for stadium_no, stadium in stadiums.items():
         for race_no, race in (stadium.get("races") or {}).items():
-            date = race.get("date", "")
+           date = race.get("date", now.strftime("%Y-%m-%d")) 
             key = (str(date), str(stadium_no), str(race_no))
 
             prediction = prediction_map.get(key)
