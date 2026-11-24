@@ -416,6 +416,7 @@ fetch(CSV_URL+"?t="+Date.now())
   const predictions=csvParse(predictionText);
 
   renderConfidence(rows,predictions);
+renderScoreBands(rows,predictions);
  }catch(err){
   el("confidenceStatus").textContent=
    "信頼度データの読み込みエラー："+err.message;
