@@ -215,10 +215,13 @@ if(Number.isFinite(score)){
  const levels=Object.entries(groups);
 
  el("confidenceStats").innerHTML=levels.map(([level,rs])=>{
-  const investment=sum(rs,"total_stake_yen");
-  const returns=sum(rs,"total_return_yen");
-  const profit=returns-investment;
-  const hits=rs.filter(isHit).length;
+ const investment=sum(rs,"total_stake_yen");
+const returns=sum(rs,"total_return_yen");
+const profit=returns-investment;
+const hits=rs.filter(isHit).length;
+const averageScore=scoreCounts[level]
+ ? (scoreTotals[level]/scoreCounts[level]).toFixed(1)
+ : "-"; 
 
   return `<tr>
    <td>${level}</td>
