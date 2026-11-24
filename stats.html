@@ -461,6 +461,116 @@ fetch(CSV_URL+"?t="+Date.now())
  el("status").textContent=
   "実績データ読み込みエラー："+err.message;
 });
+
+function renderRaceAnalysis(rows) {
+  const courses = Array.from({length: 6}, (_, i) => ({
+    course: i + 1, count: 0, first: 0, second: 0, third: 0
+  }));
+
+  const starts = Array.from({length: 6}, (_, i) => ({
+    place: i + 1, count: 0, total: 0
+  }));
+
+  let mainHit = 0;
+  let backupHit = 0;
+  let eitherHit = 0;
+  let checked = 0;
+
+  rows.forEach(r => {
+    let racers = {};
+    try {
+      racers = JSON.parse(r.actual_racers || "{}");
+    } catch (e) {
+      return;
+    }
+
+    Object.values(racers).forEach(boat => {
+      const course = Number(boat.course_number);
+      const place = Number(boat.place_number);
+      const st = Number(boat.start_timing);
+
+      if (course >= 1 && course <= 6 && place >= 1 && place <= 6) {
+        const c = courses[course - 1];
+        c.count++;
+        if (place === 1) c.first++;
+        if (place === 2) c.second++;
+        if (place === 3) c.third++;
+      }
+
+      if (place >= 1 && place <= 6 && Number.isFinite(st)) {
+        starts[place - 1].count++;
+        starts[place - 1].total += st;
+      }
+    });
+
+    const winning = (r.winning_combination || "").trim();
+    if (!winning) return;
+
+    checked++;
+
+    const main = (r.main_candidates || "").split(";").map(x => x.trim());
+    const backup = (r.backup_candidates || "").split(";").map(x => x.trim());
+
+    const m = main.includes(winning);
+    const b = backup.includes(winning);
+
+    if (m) mainHit++;
+    if (b) backupHit++;
+    if (m || b) eitherHit++;
+  });
+
+  el("courseAnalysis").innerHTML = courses.map(c => {
+    const top3 = c.first + c.second + c.third;
+    return `<tr>
+      <td>${c.course}コース</td>
+      <td>${c.count}</td>
+      <td>${c.first}</td>
+      <td>${c.second}</td>
+      <td>${c.third}</td>
+      <td>${pct(top3, c.count)}</td>
+    </tr>`;
+  }).join("");
+
+  el("startAnalysis").innerHTML = starts.map(s => `
+    <tr>
+      <td>${s.place}着</td>
+      <td>${s.count}</td>
+      <td>${s.count ? (s.total / s.count).toFixed(3) : "-"}</td>
+    </tr>
+  `).join("");
+
+  const predictionRows = [
+    ["本線", mainHit],
+    ["押さえ", backupHit],
+    ["本線・押さえ合計", eitherHit]
+  ];
+
+  el("predictionAnalysis").innerHTML = predictionRows.map(([name, hit]) => `
+    <tr>
+      <td>${name}</td>
+      <td>${checked}</td>
+      <td>${hit}</td>
+      <td>${pct(hit, checked)}</td>
+    </tr>
+  `).join("");
+
+  el("analysisStatus").textContent =
+    `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
+}
+
+fetch("./data/race_analysis.csv?t=" + Date.now())
+  .then(response => {
+    if (!response.ok) throw new Error("分析CSVを読み込めません");
+    return response.text();
+  })
+  .then(text => {
+    renderRaceAnalysis(csvParse(text));
+  })
+  .catch(error => {
+    el("analysisStatus").textContent =
+      "分析データ読み込みエラー：" + error.message;
+  });
+
 </script>
 </body>
 </html>
