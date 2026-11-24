@@ -18,7 +18,10 @@ API_URL = "https://boatraceopenapi.github.io/api/v1/today.json"
 PREDICTION_FIELDS = [
     "date", "stadium_number", "race_number", "closed_at",
     "main_candidates", "backup_candidates",
-    "exhibition_count", "generated_at"
+    "exhibition_count", "generated_at",
+    "confidence_score", "confidence_level",
+    "evaluation_summary", "evaluation_details",
+    "missing_metrics"
 ]
 
 RESULT_FIELDS = [
@@ -67,6 +70,8 @@ def rank_scores(boats, field, higher, weight):
     return scores
 
 
+
+
 def predict_race(race):
     racers = race.get("racers") or {}
     preview = race.get("preview") or {}
@@ -89,6 +94,9 @@ def predict_race(race):
 
     scores = {str(lane): 0 for lane in range(1, 7)}
     used_metrics = 0
+    evaluation_details = {}
+    summary_parts = []
+    missing_metrics = []
 
     metrics = [
         ("national_win_rate", True, 2),
@@ -100,10 +108,42 @@ def predict_race(race):
 
     for field, higher, weight in metrics:
         result = rank_scores(boats, field, higher, weight)
+
+        values = {
+            lane: number(boats[lane].get(field))
+            for lane in boats
+        }
+        available = sum(
+            value is not None for value in values.values()
+        )
+
+        if available < 6:
+            missing_metrics.append(field)
+
         if result:
             used_metrics += 1
+
         for lane, points in result.items():
             scores[lane] += points
+
+        ranked = sorted(
+            result.items(),
+            key=lambda item: (-item[1], int(item[0]))
+        )
+
+        evaluation_details[field] = {
+            "weight": weight,
+            "higher_is_better": higher,
+            "available_boats": available,
+            "values": values,
+            "points": result,
+            "ranking": [lane for lane, points in ranked]
+        }
+
+        if ranked:
+            summary_parts.append(
+                f"{field}: {ranked[0][0]}号艇が上位"
+            )
 
     if used_metrics == 0:
         return None
@@ -165,7 +205,41 @@ def predict_race(race):
         f"{a}-{b}-{c}" for score, a, b, c in backup
     )
 
-    return main_text, backup_text, exhibition_count
+    ordered_scores = sorted(
+        scores.values(), reverse=True
+    )
+    first_score = ordered_scores[0]
+    second_score = ordered_scores[1]
+
+    max_possible = sum(
+        6 * weight for field, higher, weight in metrics
+    )
+
+    confidence_score = round(
+        max(0, first_score - second_score)
+        / max_possible * 100,
+        1
+    )
+
+    if confidence_score >= 15:
+        confidence_level = "相対評価：高め"
+    elif confidence_score >= 7:
+        confidence_level = "相対評価：中程度"
+    else:
+        confidence_level = "相対評価：低め"
+
+    evaluation_summary = " / ".join(summary_parts)
+
+    return (
+        main_text,
+        backup_text,
+        exhibition_count,
+        confidence_score,
+        confidence_level,
+        evaluation_summary,
+        json.dumps(evaluation_details, ensure_ascii=False),
+        ";".join(missing_metrics)
+    )
 
 
 def read_csv(path):
@@ -405,7 +479,16 @@ def main():
             if prediction is None:
                 continue
 
-            main_text, backup_text, exhibition_count = prediction
+                       (
+                main_text,
+                backup_text,
+                exhibition_count,
+                confidence_score,
+                confidence_level,
+                evaluation_summary,
+                evaluation_details,
+                missing_metrics
+            ) = prediction
 
             row = {
                 "date": date,
@@ -415,6 +498,11 @@ def main():
                 "main_candidates": main_text,
                 "backup_candidates": backup_text,
                 "exhibition_count": exhibition_count,
+                "confidence_score": confidence_score,
+                "confidence_level": confidence_level,
+                "evaluation_summary": evaluation_summary,
+                "evaluation_details": evaluation_details,
+                "missing_metrics": missing_metrics,
                 "generated_at": now.strftime("%Y-%m-%d %H:%M:%S")
             }
 
