@@ -479,7 +479,7 @@ def main():
             if prediction is None:
                 continue
 
-                       (
+            (
                 main_text,
                 backup_text,
                 exhibition_count,
