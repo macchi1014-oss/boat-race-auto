@@ -624,7 +624,19 @@ const factorStats = Object.fromEntries(
         const actualThird = Object.entries(racers).find(
           ([boatNo, boat]) => Number(boat.place_number) === 3
         )?.[0];
+if (actualSecond) {
+  const appearsAnywhere = candidates.some(
+    parts => parts.includes(String(actualSecond))
+  );
+  const appearsSecondSlot = candidates.some(
+    parts => parts[1] === String(actualSecond)
+  );
 
+  if (appearsAnywhere) secondAnywhere++;
+  else secondMissing++;
+
+  if (appearsSecondSlot) secondSlotAnyAxis++;
+}
         if (actualSecond && correctAxisCandidates.some(
           parts => parts[1] === String(actualSecond)
         )) {
