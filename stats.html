@@ -525,7 +525,22 @@ function renderRaceAnalysis(rows) {
     const backup = (r.backup_candidates || "").split(";").map(x => x.trim());
 
     const m = main.includes(winning);
-    const b = backup.includes(winning);
+    const b = backup.includes(winning);    
+    const actualWinner = Object.entries(racers).find(
+      ([boatNo, boat]) => Number(boat.place_number) === 1
+    )?.[0];
+
+    if (!(m || b) && actualWinner) {
+      const predictedFirsts = [...main, ...backup]
+        .filter(Boolean)
+        .map(candidate => candidate.split("-")[0]);
+
+      if (predictedFirsts.includes(String(actualWinner))) {
+        axisCorrectMiss++;
+      } else {
+        axisMiss++;
+      }
+    }
 
     if (m) mainHit++;
     if (b) backupHit++;
