@@ -738,6 +738,7 @@ def main():
 
     results = read_csv(RESULT_FILE)
     settled_count = settle_results(stadiums, predictions, results)
+    record_race_analysis(stadiums, predictions, results)
 
     write_csv(RESULT_FILE, RESULT_FIELDS, results)
     create_statistics(results)
