@@ -1,4 +1,4 @@
 ﻿category,races,hits,hit_rate_percent,stake_yen,return_yen,profit_yen,recovery_rate_percent
-main,1,0,0.0,300,0,-300,0.0
-backup,1,0,0.0,300,0,-300,0.0
-total,1,0,0.0,600,0,-600,0.0
+main,22,4,18.18,6600,7290,690,110.45
+backup,22,0,0.0,6600,0,-6600,0.0
+total,22,4,18.18,13200,7290,-5910,55.23
