@@ -1,80 +1,75 @@
 
-import csv
+import json
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
 
 DATA_DIR = "data"
-CSV_FILE = os.path.join(DATA_DIR, "races.csv")
 CHECK_FILE = os.path.join(DATA_DIR, "source_check.txt")
 
-FIELDS = [
-    "date",
-    "venue",
-    "race_no",
-    "combination",
-    "stake_yen",
-    "result",
-    "payout_yen"
-]
+API_URL = "https://boatraceopenapi.github.io/api/v1/today.json"
 
 
-def initialize():
+def fetch_race_data():
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    if not os.path.exists(CSV_FILE):
-        with open(CSV_FILE, "w", newline="", encoding="utf-8-sig") as f:
-            writer = csv.DictWriter(f, fieldnames=FIELDS)
-            writer.writeheader()
-
-
-def check_boatrace_site():
     today = datetime.now(
         ZoneInfo("Asia/Tokyo")
     ).strftime("%Y%m%d")
 
-    url = (
-        "https://www.boatrace.jp/owpc/pc/race/index"
-        f"?hd={today}"
+    print("レースデータを取得しています...")
+
+    response = requests.get(
+        API_URL,
+        timeout=30,
+        headers={"User-Agent": "BoatRaceAuto/1.0"}
     )
 
-    try:
-        response = requests.get(
-            url,
-            timeout=20,
-            headers={
-                "User-Agent": "Mozilla/5.0"
-            }
-        )
-        response.raise_for_status()
+    response.raise_for_status()
 
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser"
+    data = response.json()
+
+    if not isinstance(data, dict):
+        raise ValueError("JSONの形式が正しくありません")
+
+    programs = data.get("programs", {})
+    stadiums = programs.get("stadiums", {})
+
+    if not isinstance(stadiums, dict):
+        raise ValueError("レース場データが見つかりません")
+
+    race_count = 0
+
+    for stadium in stadiums.values():
+        races = stadium.get("races", {})
+        race_count += len(races)
+
+    file_path = os.path.join(
+        DATA_DIR,
+        f"{today}.json"
+    )
+
+    with open(
+        file_path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        json.dump(
+            data,
+            f,
+            ensure_ascii=False,
+            indent=2
         )
 
-        title = (
-            soup.title.get_text(strip=True)
-            if soup.title else "タイトルなし"
-        )
-
-        message = (
-            "公式サイト接続確認\n"
-            f"確認日時: {today}\n"
-            f"HTTP status: {response.status_code}\n"
-            f"ページタイトル: {title}\n"
-            f"取得文字数: {len(response.text)}\n"
-        )
-
-    except Exception as e:
-        message = (
-            "公式サイト接続確認に失敗\n"
-            f"確認日時: {today}\n"
-            f"エラー: {e}\n"
-        )
+    message = (
+        "レースデータ取得成功\n"
+        f"取得日: {today}\n"
+        f"レース場数: {len(stadiums)}\n"
+        f"レース数: {race_count}\n"
+        f"保存先: {file_path}\n"
+    )
 
     with open(
         CHECK_FILE,
@@ -86,46 +81,5 @@ def check_boatrace_site():
     print(message)
 
 
-def show_statistics():
-    total_bet = 0
-    total_return = 0
-    hits = 0
-    races = set()
-
-    with open(
-        CSV_FILE,
-        newline="",
-        encoding="utf-8-sig"
-    ) as f:
-        for row in csv.DictReader(f):
-            total_bet += int(row["stake_yen"] or 0)
-            payout = int(row["payout_yen"] or 0)
-            total_return += payout
-
-            if payout > 0:
-                hits += 1
-
-            races.add((
-                row["date"],
-                row["venue"],
-                row["race_no"]
-            ))
-
-    rate = (
-        total_return / total_bet * 100
-        if total_bet else 0
-    )
-
-    print("\n===== BOAT RACE STATISTICS =====")
-    print(f"Recorded races: {len(races)}")
-    print(f"Hit tickets: {hits}")
-    print(f"Total bets: {total_bet} yen")
-    print(f"Total returns: {total_return} yen")
-    print(f"Recovery rate: {rate:.2f}%")
-    print(f"Profit/Loss: {total_return - total_bet} yen")
-
-
 if __name__ == "__main__":
-    initialize()
-    check_boatrace_site()
-    show_statistics()
+    fetch_race_data()
