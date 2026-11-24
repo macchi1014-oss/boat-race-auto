@@ -100,7 +100,43 @@ input,select{padding:10px;border:1px solid #ccd2dc;border-radius:7px;background:
 </table></div>
 </section>
 <section>
-<h2>日別収支</h2>
+
+<section>
+<h2>レース内容の深掘り分析</h2>
+<div id="analysisStatus" class="muted">分析データを読み込み中...</div>
+
+<h3>進入コース別成績</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>コース</th><th>対象</th><th>1着</th><th>2着</th><th>3着</th><th>3着以内率</th></tr>
+</thead>
+<tbody id="courseAnalysis"></tbody>
+</table>
+</div>
+
+<h3>スタートタイミング別成績</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>着順</th><th>対象</th><th>平均ST</th></tr>
+</thead>
+<tbody id="startAnalysis"></tbody>
+</table>
+</div>
+
+<h3>予想との照合</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr><th>区分</th><th>対象</th><th>的中</th><th>的中率</th></tr>
+</thead>
+<tbody id="predictionAnalysis"></tbody>
+</table>
+</div>
+</section>
+
+ <h2>日別収支</h2>
 <div id="daily" class="muted">データなし</div>
 </section>
 
