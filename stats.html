@@ -583,7 +583,18 @@ function renderRaceAnalysis(rows) {
       <td>${pct(hit, checked)}</td>
     </tr>
   `).join("");
+  const misses = axisCorrectMiss + axisMiss;
 
+  const failureRows = [
+    ["本線・押さえ的中", eitherHit, "-"],
+    ["1着候補は一致・組み合わせ不一致", axisCorrectMiss, pct(axisCorrectMiss, misses)],
+    ["1着候補から不一致", axisMiss, pct(axisMiss, misses)],
+    ["不的中合計", misses, pct(misses, misses)]
+  ];
+
+  el("failureAnalysis").innerHTML = failureRows.map(([name, count, rate]) => `
+    <tr><td>${name}</td><td>${count}</td><td>${rate}</td></tr>
+  `).join("");
   el("analysisStatus").textContent =
     `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
 }
