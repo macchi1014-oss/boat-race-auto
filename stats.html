@@ -499,7 +499,21 @@ function renderRaceAnalysis(rows) {
   let checked = 0;  
   let axisCorrectMiss = 0;
   let axisMiss = 0;
+const factorNames = {
+  national_win_rate: "全国勝率",
+  local_win_rate: "地元勝率",
+  motor_top_2_percent: "モーター2連率",
+  average_start_timing: "平均ST",
+  exhibition_time: "展示タイム"
+};
 
+const factorStats = Object.fromEntries(
+  Object.keys(factorNames).map(key => [key, {
+    sums: [0, 0, 0],
+    counts: [0, 0, 0],
+    races: new Set()
+  }])
+);
   rows.forEach(r => {
     let racers = {};
     try {
