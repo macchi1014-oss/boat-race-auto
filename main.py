@@ -2,6 +2,7 @@
 import csv
 import json
 import os
+import hashlib
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from itertools import permutations
