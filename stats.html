@@ -521,7 +521,32 @@ const factorStats = Object.fromEntries(
     } catch (e) {
       return;
     }
+    let evaluation = {};
+    try {
+      evaluation = JSON.parse(r.evaluation_details || "{}");
+    } catch (e) {
+      evaluation = {};
+    }
 
+    Object.entries(factorNames).forEach(([key]) => {
+      const ranking = evaluation[key]?.ranking;
+      if (!Array.isArray(ranking)) return;
+
+      const rankMap = Object.fromEntries(
+        ranking.map((boatNo, index) => [String(boatNo), index + 1])
+      );
+
+      Object.entries(racers).forEach(([boatNo, boat]) => {
+        const place = Number(boat.place_number);
+        const rank = rankMap[String(boatNo)];
+        if (place < 1 || place > 3 || !rank) return;
+
+        const stat = factorStats[key];
+        stat.sums[place - 1] += rank;
+        stat.counts[place - 1]++;
+        stat.races.add(String(r.date || "") + "|" + String(r.stadium_number || "") + "|" + String(r.race_number || ""));
+      });
+    });
     Object.values(racers).forEach(boat => {
       const course = Number(boat.course_number);
       const place = Number(boat.place_number);
