@@ -376,7 +376,10 @@ def main():
         .get("stadiums", {})
     )
 
-    predictions = read_csv(PREDICTION_FILE)
+    predictions = [
+    row for row in read_csv(PREDICTION_FILE)
+    if row.get("main_candidates") and row.get("backup_candidates")
+]
     prediction_map = {
         (
             row["date"],
