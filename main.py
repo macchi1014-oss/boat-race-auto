@@ -593,6 +593,7 @@ def main():
             prediction_map[key] = row
 
     predictions = list(prediction_map.values())
+    record_prediction_snapshots(stadiums, prediction_map, now)
     write_csv(PREDICTION_FILE, PREDICTION_FIELDS, predictions)
 
     results = read_csv(RESULT_FILE)
