@@ -463,121 +463,137 @@ def record_race_analysis(stadiums, predictions, results):
 
     known = {
         (
-            row["date"],
-            str(row["stadium_number"]),
-            str(row["race_number"])
+            row.get("date", ""),
+            str(row.get("stadium_number", "")),
+            str(row.get("race_number", ""))
         )
         for row in existing
     }
 
     prediction_map = {
         (
-            row["date"],
-            str(row["stadium_number"]),
-            str(row["race_number"])
+            row.get("date", ""),
+            str(row.get("stadium_number", "")),
+            str(row.get("race_number", ""))
         ): row
         for row in predictions
     }
 
     result_map = {
         (
-            row["date"],
-            str(row["stadium_number"]),
-            str(row["race_number"])
+            row.get("date", ""),
+            str(row.get("stadium_number", "")),
+            str(row.get("race_number", ""))
         ): row
         for row in results
     }
 
     new_records = []
 
-    for stadium_no, stadium in stadiums.items():
-        for race_no, race in (stadium.get("races") or {}).items():
-            date = race.get(
-                "date", datetime.now(JST).strftime("%Y-%m-%d")
-            )
+    weather_fields = [
+        "wind_speed",
+        "wind_direction_number",
+        "wave_height",
+        "weather_number",
+        "air_temperature",
+        "water_temperature"
+    ]
 
-            key = (str(date), str(stadium_no), str(race_no))
+    # 保存済みの日付別JSONをすべて確認する
+    for filename in sorted(os.listdir(DATA_DIR)):
+        if not (filename.endswith(".json") and filename[:8].isdigit()):
+            continue
 
-            if key in known:
-                continue
+        json_path = os.path.join(DATA_DIR, filename)
 
-            prediction = prediction_map.get(key)
-            result_record = result_map.get(key)
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
 
-            if not prediction or not result_record:
-                continue
+        all_stadiums = (
+            data.get("programs", {}).get("stadiums", {})
+        )
 
-            actual = race.get("result") or {}
-            actual_racers = actual.get("racers") or {}
+        for stadium_no, stadium in all_stadiums.items():
+            for race_no, race in (stadium.get("races") or {}).items():
 
-            places = [
-                number((actual_racers.get(str(lane)) or {}).get("place_number"))
-                for lane in range(1, 7)
-            ]
+                date = race.get("date", "")
+                key = (str(date), str(stadium_no), str(race_no))
 
-            if not any(place in (1, 2, 3) for place in places):
-                continue
+                if key in known:
+                    continue
 
-            racer_data = {}
+                prediction = prediction_map.get(key)
+                result_record = result_map.get(key)
 
-            for lane in range(1, 7):
-                racer = actual_racers.get(str(lane)) or {}
+                if not prediction or not result_record:
+                    continue
 
-                racer_data[str(lane)] = {
-                    "course_number": racer.get("course_number"),
-                    "start_timing": racer.get("start_timing"),
-                    "place_number": racer.get("place_number")
+                actual = race.get("result") or {}
+                actual_racers = actual.get("racers") or {}
+
+                places = [
+                    (actual_racers.get(str(lane)) or {}).get("place_number")
+                    for lane in range(1, 7)
+                ]
+
+                if not any(place in (1, 2, 3) for place in places):
+                    continue
+
+                racer_data = {}
+
+                for lane in range(1, 7):
+                    racer = actual_racers.get(str(lane)) or {}
+
+                    racer_data[str(lane)] = {
+                        "course_number": racer.get("course_number"),
+                        "start_timing": racer.get("start_timing"),
+                        "place_number": racer.get("place_number"),
+                        "name": racer.get("name", "")
+                    }
+
+                preview = race.get("preview") or {}
+
+                preview_weather = {
+                    field: preview.get(field)
+                    for field in weather_fields
                 }
 
-            preview = race.get("preview") or {}
+                result_weather = {
+                    field: actual.get(field)
+                    for field in weather_fields
+                }
 
-            weather_fields = [
-                "wind_speed",
-                "wind_direction_number",
-                "wave_height",
-                "weather_number",
-                "air_temperature",
-                "water_temperature"
-            ]
+                new_records.append({
+                    "date": date,
+                    "stadium_number": stadium_no,
+                    "race_number": race_no,
+                    "main_candidates": prediction.get("main_candidates", ""),
+                    "backup_candidates": prediction.get("backup_candidates", ""),
+                    "confidence_score": prediction.get("confidence_score", ""),
+                    "evaluation_details": prediction.get("evaluation_details", ""),
+                    "winning_combination": result_record.get("winning_combination", ""),
+                    "payout_yen": result_record.get("payout_yen", ""),
+                    "actual_racers": json.dumps(
+                        racer_data, ensure_ascii=False
+                    ),
+                    "preview_weather": json.dumps(
+                        preview_weather, ensure_ascii=False
+                    ),
+                    "result_weather": json.dumps(
+                        result_weather, ensure_ascii=False
+                    ),
+                    "technique_number": actual.get("technique_number"),
+                    "remarks": actual.get("remarks", ""),
+                    "refunds": json.dumps(
+                        actual.get("refunds") or [],
+                        ensure_ascii=False
+                    )
+                })
 
-            preview_weather = {
-                field: preview.get(field)
-                for field in weather_fields
-            }
-
-            result_weather = {
-                field: actual.get(field)
-                for field in weather_fields
-            }
-
-            new_records.append({
-                "date": date,
-                "stadium_number": stadium_no,
-                "race_number": race_no,
-                "main_candidates": prediction.get("main_candidates", ""),
-                "backup_candidates": prediction.get("backup_candidates", ""),
-                "confidence_score": prediction.get("confidence_score", ""),
-                "evaluation_details": prediction.get("evaluation_details", ""),
-                "winning_combination": result_record.get("winning_combination", ""),
-                "payout_yen": result_record.get("payout_yen", ""),
-                "actual_racers": json.dumps(
-                    racer_data, ensure_ascii=False
-                ),
-                "preview_weather": json.dumps(
-                    preview_weather, ensure_ascii=False
-                ),
-                "result_weather": json.dumps(
-                    result_weather, ensure_ascii=False
-                ),
-                "technique_number": actual.get("technique_number"),
-                "remarks": actual.get("remarks", ""),
-                "refunds": json.dumps(
-                    actual.get("refunds") or [],
-                    ensure_ascii=False
-                )
-            })
-
-            known.add(key)
+                known.add(key)
 
     if new_records:
         write_csv(path, fields, existing + new_records)
