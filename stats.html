@@ -211,7 +211,8 @@ if(Number.isFinite(score)){
  scoreTotals[level]+=score;
  scoreCounts[level]++;
 }
-
+});
+ 
  const levels=Object.entries(groups);
 
  el("confidenceStats").innerHTML=levels.map(([level,rs])=>{
