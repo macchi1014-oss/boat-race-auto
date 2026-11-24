@@ -305,30 +305,34 @@ function drawHistory(){
  el("shown").textContent=rows.length+"件表示";
 }
 ["search","filter","sort"].forEach(id=>el(id).addEventListener("input",drawHistory));
-Promise.all([
- fetch(CSV_URL+"?t="+Date.now()),
- fetch(PREDICTIONS_URL+"?t="+Date.now())
-])
-.then(async responses=>{
- if(!responses[0].ok||!responses[1].ok){
-  throw new Error("CSVを読み込めません");
- }
- return Promise.all(responses.map(r=>r.text()));
+fetch(CSV_URL+"?t="+Date.now())
+.then(r=>{
+ if(!r.ok)throw new Error("実績CSVを読み込めません");
+ return r.text();
 })
-.then(([resultText,predictionText])=>{
+.then(async resultText=>{
  const rows=csvParse(resultText);
- const predictions=csvParse(predictionText);
 
  render(rows);
- renderConfidence(rows,predictions);
-
  el("status").textContent=
   "実績データを読み込みました（"+rows.length+"レース）";
+
+ try{
+  const response=await fetch(PREDICTIONS_URL+"?t="+Date.now());
+  if(!response.ok)throw new Error("予想CSVを読み込めません");
+
+  const predictionText=await response.text();
+  const predictions=csvParse(predictionText);
+
+  renderConfidence(rows,predictions);
+ }catch(err){
+  el("confidenceStatus").textContent=
+   "信頼度データの読み込みエラー："+err.message;
+ }
 })
 .catch(err=>{
  el("status").textContent=
-  "データ読み込みエラー："+err.message+
-  "。CSVの場所や公開状態を確認してください。";
+  "実績データ読み込みエラー："+err.message;
 });
 </script>
 </body>
