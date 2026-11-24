@@ -12,6 +12,7 @@ JST = ZoneInfo("Asia/Tokyo")
 DATA_DIR = "data"
 PREDICTION_FILE = os.path.join(DATA_DIR, "predictions.csv")
 RESULT_FILE = os.path.join(DATA_DIR, "race_results.csv")
+SNAPSHOT_FILE = os.path.join(DATA_DIR, "race_snapshots.jsonl")
 STATS_FILE = os.path.join(DATA_DIR, "statistics.csv")
 API_URL = "https://boatraceopenapi.github.io/api/v1/today.json"
 
