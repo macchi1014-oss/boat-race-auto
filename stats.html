@@ -487,7 +487,9 @@ function renderRaceAnalysis(rows) {
   let mainHit = 0;
   let backupHit = 0;
   let eitherHit = 0;
-  let checked = 0;
+  let checked = 0;  
+  let axisCorrectMiss = 0;
+  let axisMiss = 0;
 
   rows.forEach(r => {
     let racers = {};
