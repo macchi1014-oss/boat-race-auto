@@ -7,44 +7,64 @@
 <title>ボートレース予想一覧</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f3f5f8;color:#202735;font-family:system-ui,sans-serif}
+body{margin:0;background:#f2f5f9;color:#202b3c;font-family:system-ui,sans-serif}
 header{background:#12345a;color:white;padding:22px 16px}
 header h1{font-size:22px;margin:0 0 6px}
-header p{margin:0;font-size:13px;opacity:.85}
-main{max-width:760px;margin:auto;padding:16px}
-.panel,.race{background:white;border-radius:13px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0000000b}
-select{width:100%;padding:12px;border:1px solid #ccd3dc;border-radius:8px;font-size:16px;background:white}
+header p{font-size:13px;margin:0;opacity:.85}
+main{max-width:850px;margin:auto;padding:14px}
+.panel,.race{background:white;border-radius:13px;padding:16px;margin-bottom:13px;box-shadow:0 2px 9px #0000000b}
 label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}
-.race h2{font-size:18px;margin:0 0 10px}
+input,select{width:100%;padding:12px;border:1px solid #cbd3df;border-radius:8px;font-size:16px;background:white;color:#202b3c}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.status{font-size:13px;color:#596579;margin-top:14px}
+.race h2{font-size:19px;margin:0 0 9px}
 .meta{font-size:12px;color:#667085;line-height:1.8}
-.tickets{font-size:18px;font-weight:bold;letter-spacing:1px;line-height:1.9}
+.section-title{font-size:14px;font-weight:bold;margin:15px 0 5px}
 .main{color:#0875bd}
 .backup{color:#bd6a13}
-.note{font-size:13px;line-height:1.7;color:#4b5563;margin-top:10px}
-.warning{background:#fff3d8;color:#805400;padding:10px;border-radius:8px;font-size:13px;margin-top:10px}
-.status{font-size:13px;color:#667085;margin:10px 0}
+.tickets{font-size:18px;font-weight:bold;line-height:1.9;overflow-wrap:anywhere}
+.note{font-size:13px;line-height:1.7;color:#596579;margin-top:12px}
+.warning{background:#fff3d8;color:#805400;padding:11px;border-radius:8px;font-size:13px;margin-top:12px;line-height:1.6}
 .empty{text-align:center;color:#667085;padding:28px 10px}
-.small{font-size:12px;color:#667085}
+.small{font-size:12px;color:#667085;line-height:1.7}
+@media(max-width:480px){.filters{grid-template-columns:1fr}.tickets{font-size:17px}}
 </style>
 </head>
 <body>
 <header>
 <h1>ボートレース予想一覧</h1>
-<p>本線・押さえの買い目とレース情報を確認</p>
+<p>本線・押さえ・検索・並び替え・レース情報</p>
 </header>
 <main>
 <div class="panel">
+<label for="search">キーワード検索</label>
+<input id="search" type="search" placeholder="例：尼崎、1-2-3">
+
+<div class="filters">
+<div>
 <label for="venue">開催場</label>
 <select id="venue"><option value="">すべての開催場</option></select>
+</div>
+<div>
 <label for="race">レース番号</label>
-<select id="race">
-<option value="">すべてのレース</option>
+<select id="race"><option value="">すべてのレース</option></select>
+</div>
+</div>
+
+<label for="sort">並び替え</label>
+<select id="sort">
+<option value="deadline">締切が近い順</option>
+<option value="venue">開催場・レース順</option>
+<option value="updated">更新が新しい順</option>
+<option value="race">レース番号順</option>
 </select>
 <div id="status" class="status">予想データを読み込み中...</div>
 </div>
+
 <div id="results"></div>
 <p class="small">※予想は参考情報です。的中や利益を保証するものではありません。購入前に必ず公式情報を確認してください。</p>
 </main>
+
 <script>
 const CSV_URL="https://raw.githubusercontent.com/macchi1014-oss/boat-race-auto/main/data/predictions.csv";
 
@@ -82,6 +102,11 @@ function parseCSV(text){
  });
 }
 
+function dateValue(value){
+ const d=new Date(value);
+ return isNaN(d)?null:d.getTime();
+}
+
 function formatDate(value){
  if(!value)return "不明";
  const d=new Date(value);
@@ -90,11 +115,10 @@ function formatDate(value){
 }
 
 function isOld(row){
- const deadline=new Date(row.closed_at);
- if(!isNaN(deadline)&&deadline.getTime()<Date.now())return true;
- const generated=new Date(row.generated_at);
- if(!isNaN(generated)&&Date.now()-generated.getTime()>30*60*1000)return true;
- return false;
+ const deadline=dateValue(row.closed_at);
+ const generated=dateValue(row.generated_at);
+ return (deadline!==null&&deadline<Date.now())||
+ (generated!==null&&Date.now()-generated>30*60*1000);
 }
 
 function fillFilters(){
@@ -120,7 +144,8 @@ function updateRaces(){
  race.innerHTML='<option value="">すべてのレース</option>';
  numbers.forEach(n=>{
   const option=document.createElement("option");
-  option.value=n;option.textContent=n+"R";
+  option.value=n;
+  option.textContent=n+"R";
   race.appendChild(option);
  });
  race.value=numbers.includes(selected)?selected:"";
@@ -130,23 +155,47 @@ function updateRaces(){
 function render(){
  const venue=document.getElementById("venue").value;
  const race=document.getElementById("race").value;
- const list=records.filter(r=>
-  (!venue||r.stadium_number===venue)&&
-  (!race||r.race_number===race)
- ).sort((a,b)=>
-  Number(a.stadium_number)-Number(b.stadium_number)||
-  Number(a.race_number)-Number(b.race_number)
- );
+ const keyword=document.getElementById("search").value.trim().toLowerCase();
+ const sort=document.getElementById("sort").value;
+
+ let list=records.filter(r=>{
+  const text=[
+   venues[r.stadium_number]||"",
+   r.race_number||"",
+   r.main_candidates||"",
+   r.backup_candidates||""
+  ].join(" ").toLowerCase();
+
+  return (!venue||r.stadium_number===venue)&&
+   (!race||r.race_number===race)&&
+   (!keyword||text.includes(keyword));
+ });
+
+ list.sort((a,b)=>{
+  if(sort==="deadline"){
+   return (dateValue(a.closed_at)??Infinity)-(dateValue(b.closed_at)??Infinity);
+  }
+  if(sort==="updated"){
+   return (dateValue(b.generated_at)??0)-(dateValue(a.generated_at)??0);
+  }
+  if(sort==="race"){
+   return Number(a.race_number)-Number(b.race_number);
+  }
+  return Number(a.stadium_number)-Number(b.stadium_number)||
+   Number(a.race_number)-Number(b.race_number);
+ });
 
  const results=document.getElementById("results");
  results.innerHTML="";
+ document.getElementById("status").textContent=
+  "表示件数："+list.length+"件 ／ 全予想："+records.length+"件";
+
  if(!list.length){
   results.innerHTML='<div class="panel empty">該当する予想データがありません。</div>';
   return;
  }
 
  list.forEach(row=>{
-  const old=isOld(row);
   const card=document.createElement("section");
   card.className="race";
 
@@ -156,11 +205,12 @@ function render(){
 
   const meta=document.createElement("div");
   meta.className="meta";
-  meta.textContent="締切："+formatDate(row.closed_at)+"　／　更新："+formatDate(row.generated_at);
+  meta.textContent="締切："+formatDate(row.closed_at)+" ／ 更新："+formatDate(row.generated_at);
   card.appendChild(meta);
 
-  const mainTitle=document.createElement("p");
-  mainTitle.innerHTML='<strong class="main">本線（3通り）</strong>';
+  const mainTitle=document.createElement("div");
+  mainTitle.className="section-title main";
+  mainTitle.textContent="本線（3通り）";
   card.appendChild(mainTitle);
 
   const main=document.createElement("div");
@@ -168,8 +218,9 @@ function render(){
   main.textContent=(row.main_candidates||"未登録").split(";").join("　／　");
   card.appendChild(main);
 
-  const backupTitle=document.createElement("p");
-  backupTitle.innerHTML='<strong class="backup">押さえ（3通り）</strong>';
+  const backupTitle=document.createElement("div");
+  backupTitle.className="section-title backup";
+  backupTitle.textContent="押さえ（3通り）";
   card.appendChild(backupTitle);
 
   const backup=document.createElement("div");
@@ -182,12 +233,13 @@ function render(){
   note.textContent="信頼度・自信度：未算出（評価内訳の保存機能を準備中）";
   card.appendChild(note);
 
-  if(old){
+  if(isOld(row)){
    const warning=document.createElement("div");
    warning.className="warning";
    warning.textContent="この予想は締切済み、または更新から30分以上経過しています。購入判断には使用しないでください。";
    card.appendChild(warning);
   }
+
   results.appendChild(card);
  });
 }
@@ -198,15 +250,18 @@ async function load(){
   if(!response.ok)throw new Error("CSV取得失敗");
   const text=await response.text();
   records=parseCSV(text).filter(r=>r.date&&r.main_candidates);
-  document.getElementById("status").textContent="読み込み完了："+records.length+"レース";
   fillFilters();
  }catch(e){
-  document.getElementById("status").textContent="データを読み込めませんでした。時間をおいて再読み込みしてください。";
+  document.getElementById("status").textContent=
+   "データを読み込めませんでした。時間をおいて再読み込みしてください。";
  }
 }
 
 document.getElementById("venue").addEventListener("change",updateRaces);
 document.getElementById("race").addEventListener("change",render);
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("sort").addEventListener("change",render);
+
 load();
 </script>
 </body>
