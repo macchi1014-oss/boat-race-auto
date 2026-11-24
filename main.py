@@ -391,7 +391,7 @@ def settle_results(stadiums, predictions, results):
 
     for stadium_no, stadium in stadiums.items():
         for race_no, race in (stadium.get("races") or {}).items():
-                         date = race.get("date", now.strftime("%Y-%m-%d"))
+            date = race.get("date", datetime.now(JST).strftime("%Y-%m-%d"))
             key = (str(date), str(stadium_no), str(race_no))
 
             prediction = prediction_map.get(key)
