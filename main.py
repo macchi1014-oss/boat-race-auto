@@ -258,7 +258,84 @@ def write_csv(path, fields, records):
         writer.writeheader()
         writer.writerows(records)
 
+def record_prediction_snapshots(stadiums, prediction_map, now):
+    last_signatures = {}
 
+    if os.path.exists(SNAPSHOT_FILE):
+        with open(SNAPSHOT_FILE, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    old = json.loads(line)
+                    key = (
+                        old["date"],
+                        str(old["stadium_number"]),
+                        str(old["race_number"])
+                    )
+                    last_signatures[key] = old.get("signature")
+                except (json.JSONDecodeError, KeyError):
+                    continue
+
+    records = []
+
+    for stadium_no, stadium in stadiums.items():
+        for race_no, race in (stadium.get("races") or {}).items():
+            date = race.get("date", "")
+            key = (str(date), str(stadium_no), str(race_no))
+
+            prediction = prediction_map.get(key)
+            if not prediction:
+                continue
+
+            deadline = parse_deadline(race.get("closed_at"))
+            if deadline is None or deadline <= now:
+                continue
+
+            racers = race.get("racers") or {}
+            preview = race.get("preview") or {}
+
+            payload = {
+                "date": date,
+                "stadium_number": stadium_no,
+                "race_number": race_no,
+                "closed_at": race.get("closed_at", ""),
+                "prediction": {
+                    "main_candidates": prediction.get("main_candidates"),
+                    "backup_candidates": prediction.get("backup_candidates"),
+                    "confidence_score": prediction.get("confidence_score"),
+                    "evaluation_details": prediction.get("evaluation_details")
+                },
+                "racers": racers,
+                "preview": preview
+            }
+
+            signature = hashlib.sha256(
+                json.dumps(
+                    payload,
+                    ensure_ascii=False,
+                    sort_keys=True
+                ).encode("utf-8")
+            ).hexdigest()
+
+            if last_signatures.get(key) == signature:
+                continue
+
+            record = {
+                **payload,
+                "captured_at": now.strftime("%Y-%m-%d %H:%M:%S"),
+                "signature": signature
+            }
+
+            records.append(record)
+            last_signatures[key] = signature
+
+    if records:
+        with open(SNAPSHOT_FILE, "a", encoding="utf-8") as f:
+            for record in records:
+                f.write(
+                    json.dumps(record, ensure_ascii=False) + "\n"
+                )
+
+    print(f"予想時点スナップショット記録: {len(records)}件")
 def get_winning_result(race):
     result = race.get("result") or {}
     result_racers = result.get("racers") or {}
