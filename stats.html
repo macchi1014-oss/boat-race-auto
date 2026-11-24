@@ -187,7 +187,6 @@ function renderConfidence(results,predictions){
 
  const groups={};
  let unmatched=0;
- let blank=0;
 
  results.forEach(r=>{
   const p=predictionMap.get(confidenceKey(r));
@@ -197,12 +196,7 @@ function renderConfidence(results,predictions){
    return;
   }
 
-  const level=(p.confidence_level||"").trim();
-
-  if(!level){
-   blank++;
-   return;
-  }
+  const level=(p.confidence_level||"").trim()||"信頼度未記録";
 
   if(!groups[level])groups[level]=[];
   groups[level].push(r);
@@ -229,9 +223,9 @@ function renderConfidence(results,predictions){
  }).join("")||'<tr><td colspan="8">照合できるデータがありません</td></tr>';
 
  el("confidenceStatus").textContent=
-  "照合対象："+(results.length-unmatched-blank)+"レース"+
+  "照合対象："+(results.length-unmatched)+"レース"+
   " ／ 未照合："+unmatched+"レース"+
-  " ／ 信頼度なし："+blank+"レース";
+  " ／ 信頼度未記録："+(groups["信頼度未記録"]||[]).length+"レース";
 }
  function render(rows){
  const investment=sum(rows,"total_stake_yen");
