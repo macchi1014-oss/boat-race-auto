@@ -724,7 +724,17 @@ if (actualSecond) {
   el("secondThirdAnalysis").innerHTML = secondThirdRows.map(([name, count, rate]) => `
     <tr><td>${name}</td><td>${count}</td><td>${rate}</td></tr>
   `).join("");
-  el("analysisStatus").textContent =
+  const secondBreakdownRows = [
+  ["実際の2着艇が6点のどこかに含まれる", secondAnywhere, pct(secondAnywhere, axisCorrectMiss)],
+  ["実際の2着艇が2着位置に含まれる（軸不問）", secondSlotAnyAxis, pct(secondSlotAnyAxis, axisCorrectMiss)],
+  ["正しい1着軸と2着位置の両方が一致", secondCovered, pct(secondCovered, axisCorrectMiss)],
+  ["実際の2着艇が6点のどこにも含まれない", secondMissing, pct(secondMissing, axisCorrectMiss)]
+];
+
+el("secondBreakdown").innerHTML = secondBreakdownRows.map(([name, count, rate]) => `
+  <tr><td>${name}</td><td>${count}</td><td>${rate}</td></tr>
+`).join("");
+ el("analysisStatus").textContent =
     `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
 }
 
