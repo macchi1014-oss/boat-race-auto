@@ -187,7 +187,9 @@ function renderConfidence(results,predictions){
  });
 
  const groups={};
- let unmatched=0;
+const scoreTotals={};
+const scoreCounts={};
+let unmatched=0;
 
  results.forEach(r=>{
   const p=predictionMap.get(confidenceKey(r));
