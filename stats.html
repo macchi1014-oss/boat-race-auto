@@ -202,8 +202,15 @@ let unmatched=0;
   const level=(p.confidence_level||"").trim()||"信頼度未記録";
 
   if(!groups[level])groups[level]=[];
-  groups[level].push(r);
- });
+groups[level].push(r);
+
+const score=Number(p.confidence_score);
+if(Number.isFinite(score)){
+ if(!scoreTotals[level])scoreTotals[level]=0;
+ if(!scoreCounts[level])scoreCounts[level]=0;
+ scoreTotals[level]+=score;
+ scoreCounts[level]++;
+}
 
  const levels=Object.entries(groups);
 
