@@ -1,9 +1,15 @@
 
 import csv
 import os
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+import requests
+from bs4 import BeautifulSoup
 
 DATA_DIR = "data"
 CSV_FILE = os.path.join(DATA_DIR, "races.csv")
+CHECK_FILE = os.path.join(DATA_DIR, "source_check.txt")
 
 FIELDS = [
     "date",
@@ -24,36 +30,73 @@ def initialize():
             writer = csv.DictWriter(f, fieldnames=FIELDS)
             writer.writeheader()
 
-    print("Boat Race Auto initialized!")
 
+def check_boatrace_site():
+    today = datetime.now(
+        ZoneInfo("Asia/Tokyo")
+    ).strftime("%Y%m%d")
 
-def add_prediction(date, venue, race_no, combination):
-    initialize()
+    url = (
+        "https://www.boatrace.jp/owpc/pc/race/index"
+        f"?hd={today}"
+    )
 
-    with open(CSV_FILE, "a", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fieldnames=FIELDS)
-        writer.writerow({
-            "date": date,
-            "venue": venue,
-            "race_no": race_no,
-            "combination": combination,
-            "stake_yen": 100,
-            "result": "",
-            "payout_yen": 0
-        })
+    try:
+        response = requests.get(
+            url,
+            timeout=20,
+            headers={
+                "User-Agent": "Mozilla/5.0"
+            }
+        )
+        response.raise_for_status()
 
-    print("Prediction saved!")
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+        title = (
+            soup.title.get_text(strip=True)
+            if soup.title else "タイトルなし"
+        )
+
+        message = (
+            "公式サイト接続確認\n"
+            f"確認日時: {today}\n"
+            f"HTTP status: {response.status_code}\n"
+            f"ページタイトル: {title}\n"
+            f"取得文字数: {len(response.text)}\n"
+        )
+
+    except Exception as e:
+        message = (
+            "公式サイト接続確認に失敗\n"
+            f"確認日時: {today}\n"
+            f"エラー: {e}\n"
+        )
+
+    with open(
+        CHECK_FILE,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        f.write(message)
+
+    print(message)
 
 
 def show_statistics():
-    initialize()
-
     total_bet = 0
     total_return = 0
     hits = 0
     races = set()
 
-    with open(CSV_FILE, newline="", encoding="utf-8-sig") as f:
+    with open(
+        CSV_FILE,
+        newline="",
+        encoding="utf-8-sig"
+    ) as f:
         for row in csv.DictReader(f):
             total_bet += int(row["stake_yen"] or 0)
             payout = int(row["payout_yen"] or 0)
@@ -84,4 +127,5 @@ def show_statistics():
 
 if __name__ == "__main__":
     initialize()
+    check_boatrace_site()
     show_statistics()
