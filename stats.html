@@ -262,6 +262,68 @@ const averageScore=scoreCounts[level]
   " ／ 未照合："+unmatched+"レース"+
   " ／ 信頼度未記録："+(groups["信頼度未記録"]||[]).length+"レース";
 }
+function renderScoreBands(results,predictions){
+ const predictionMap=new Map();
+
+ predictions.forEach(p=>{
+  predictionMap.set(confidenceKey(p),p);
+ });
+
+ const bands=[
+  {label:"0〜4.9",min:0,max:5},
+  {label:"5〜9.9",min:5,max:10},
+  {label:"10〜14.9",min:10,max:15},
+  {label:"15以上",min:15,max:Infinity}
+ ];
+
+ const groups=bands.map(b=>({...b,rows:[]}));
+ let noScore=0;
+ let unmatched=0;
+
+ results.forEach(r=>{
+  const p=predictionMap.get(confidenceKey(r));
+
+  if(!p){
+   unmatched++;
+   return;
+  }
+
+  const scoreText=(p.confidence_score||"").trim();
+  const score=scoreText===""?NaN:Number(scoreText);
+
+  if(!Number.isFinite(score)){
+   noScore++;
+   return;
+  }
+
+  const group=groups.find(b=>score>=b.min&&score<b.max);
+  if(group)group.rows.push(r);
+ });
+
+ el("scoreBandStats").innerHTML=groups.map(g=>{
+  const rs=g.rows;
+  const investment=sum(rs,"total_stake_yen");
+  const returns=sum(rs,"total_return_yen");
+  const profit=returns-investment;
+  const hits=rs.filter(isHit).length;
+
+  return `<tr>
+   <td>${g.label}</td>
+   <td>${rs.length}</td>
+   <td>${hits}</td>
+   <td>${pct(hits,rs.length)}</td>
+   <td>${yen(investment)}</td>
+   <td>${yen(returns)}</td>
+   <td>${pct(returns,investment)}</td>
+   <td class="${profit>=0?'positive':'negative'}">${profit>=0?'+':''}${yen(profit)}</td>
+  </tr>`;
+ }).join("");
+
+ el("scoreBandStatus").textContent=
+  "スコア記録あり："+groups.reduce((a,g)=>a+g.rows.length,0)+"レース"+
+  " ／ スコア未記録："+noScore+"レース"+
+  " ／ 未照合："+unmatched+"レース";
+}
  function render(rows){
  const investment=sum(rows,"total_stake_yen");
  const returns=sum(rows,"total_return_yen");
