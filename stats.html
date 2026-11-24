@@ -616,7 +616,19 @@ const factorStats = Object.fromEntries(
       <td>${s.count ? (s.total / s.count).toFixed(3) : "-"}</td>
     </tr>
   `).join("");
-
+  el("factorAnalysis").innerHTML = Object.entries(factorNames).map(([key, name]) => {
+    const stat = factorStats[key];
+    const average = stat.counts.map((count, index) =>
+      count ? (stat.sums[index] / count).toFixed(2) + "位" : "-"
+    );
+    return `<tr>
+      <td>${name}</td>
+      <td>${average[0]}</td>
+      <td>${average[1]}</td>
+      <td>${average[2]}</td>
+      <td>${stat.races.size}</td>
+    </tr>`;
+  }).join("");
   const predictionRows = [
     ["本線", mainHit],
     ["押さえ", backupHit],
