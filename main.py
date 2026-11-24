@@ -446,6 +446,146 @@ def settle_results(stadiums, predictions, results):
     return settled_count
 
 
+def record_race_analysis(stadiums, predictions, results):
+    path = os.path.join(DATA_DIR, "race_analysis.csv")
+
+    fields = [
+        "date", "stadium_number", "race_number",
+        "main_candidates", "backup_candidates",
+        "confidence_score", "evaluation_details",
+        "winning_combination", "payout_yen",
+        "actual_racers",
+        "preview_weather", "result_weather",
+        "technique_number", "remarks", "refunds"
+    ]
+
+    existing = read_csv(path)
+
+    known = {
+        (
+            row["date"],
+            str(row["stadium_number"]),
+            str(row["race_number"])
+        )
+        for row in existing
+    }
+
+    prediction_map = {
+        (
+            row["date"],
+            str(row["stadium_number"]),
+            str(row["race_number"])
+        ): row
+        for row in predictions
+    }
+
+    result_map = {
+        (
+            row["date"],
+            str(row["stadium_number"]),
+            str(row["race_number"])
+        ): row
+        for row in results
+    }
+
+    new_records = []
+
+    for stadium_no, stadium in stadiums.items():
+        for race_no, race in (stadium.get("races") or {}).items():
+            date = race.get(
+                "date", datetime.now(JST).strftime("%Y-%m-%d")
+            )
+
+            key = (str(date), str(stadium_no), str(race_no))
+
+            if key in known:
+                continue
+
+            prediction = prediction_map.get(key)
+            result_record = result_map.get(key)
+
+            if not prediction or not result_record:
+                continue
+
+            actual = race.get("result") or {}
+            actual_racers = actual.get("racers") or {}
+
+            places = [
+                number((actual_racers.get(str(lane)) or {}).get("place_number"))
+                for lane in range(1, 7)
+            ]
+
+            if not any(place in (1, 2, 3) for place in places):
+                continue
+
+            racer_data = {}
+
+            for lane in range(1, 7):
+                racer = actual_racers.get(str(lane)) or {}
+
+                racer_data[str(lane)] = {
+                    "course_number": racer.get("course_number"),
+                    "start_timing": racer.get("start_timing"),
+                    "place_number": racer.get("place_number")
+                }
+
+            preview = race.get("preview") or {}
+
+            weather_fields = [
+                "wind_speed",
+                "wind_direction_number",
+                "wave_height",
+                "weather_number",
+                "air_temperature",
+                "water_temperature"
+            ]
+
+            preview_weather = {
+                field: preview.get(field)
+                for field in weather_fields
+            }
+
+            result_weather = {
+                field: actual.get(field)
+                for field in weather_fields
+            }
+
+            new_records.append({
+                "date": date,
+                "stadium_number": stadium_no,
+                "race_number": race_no,
+                "main_candidates": prediction.get("main_candidates", ""),
+                "backup_candidates": prediction.get("backup_candidates", ""),
+                "confidence_score": prediction.get("confidence_score", ""),
+                "evaluation_details": prediction.get("evaluation_details", ""),
+                "winning_combination": result_record.get("winning_combination", ""),
+                "payout_yen": result_record.get("payout_yen", ""),
+                "actual_racers": json.dumps(
+                    racer_data, ensure_ascii=False
+                ),
+                "preview_weather": json.dumps(
+                    preview_weather, ensure_ascii=False
+                ),
+                "result_weather": json.dumps(
+                    result_weather, ensure_ascii=False
+                ),
+                "technique_number": actual.get("technique_number"),
+                "remarks": actual.get("remarks", ""),
+                "refunds": json.dumps(
+                    actual.get("refunds") or [],
+                    ensure_ascii=False
+                )
+            })
+
+            known.add(key)
+
+    if new_records:
+        write_csv(path, fields, existing + new_records)
+
+    print(f"レース分析データ記録: {len(new_records)}件")
+
+    return len(new_records)
+
 def create_statistics(results):
     groups = {
         "main": {
