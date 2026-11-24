@@ -1,3 +1,5 @@
-公式サイト接続確認に失敗
-確認日時: 20261124
-エラー: 403 Client Error: Forbidden for url: https://www.boatrace.jp/owpc/pc/race/index?hd=20261124
+レースデータ取得成功
+取得日: 20261124
+レース場数: 15
+レース数: 180
+保存先: data/20261124.json
