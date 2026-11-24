@@ -27,7 +27,23 @@ input,select{width:100%;padding:12px;border:1px solid #cbd3df;border-radius:8px;
 .warning{background:#fff3d8;color:#805400;padding:11px;border-radius:8px;font-size:13px;margin-top:12px;line-height:1.6}
 .empty{text-align:center;color:#667085;padding:28px 10px}
 .small{font-size:12px;color:#667085;line-height:1.7}
-@media(max-width:480px){.filters{grid-template-columns:1fr}.tickets{font-size:17px}}
+@media(max-width:480px){.filters{grid-template-columns:1fr}.tickets{font-size:17px}}.evaluation {
+  margin: 12px 0;
+  padding: 14px;
+  background: #eef4ff;
+  border: 1px solid #c7d7f5;
+  border-radius: 10px;
+  line-height: 1.8;
+  color: #172b4d;
+}
+
+.evaluation strong {
+  font-weight: bold;
+}
+
+.evaluation div {
+  margin: 3px 0;
+}
 </style>
 </head>
 <body><p style="text-align:center;margin:12px">
@@ -209,6 +225,23 @@ function render(){
   meta.className="meta";
   meta.textContent="締切："+formatDate(row.closed_at)+" ／ 更新："+formatDate(row.generated_at);
   card.appendChild(meta);
+  const evaluation=document.createElement("div");
+  evaluation.className="evaluation";
+
+  const confidence=Number(row.confidence_score);
+  const confidenceText=Number.isFinite(confidence)
+    ? confidence.toFixed(1)+"点"
+    : "未算出";
+
+  evaluation.innerHTML=`
+    <div><strong>評価スコア：</strong>${confidenceText}</div>
+    <div><strong>信頼度：</strong>${row.confidence_level||"未算出"}</div>
+    <div><strong>評価根拠：</strong>${row.evaluation_summary||"データなし"}</div>
+    <div><strong>不足データ：</strong>${row.missing_metrics||"なし"}</div>
+  `;
+
+  card.appendChild(evaluation);
+
 
   const mainTitle=document.createElement("div");
   mainTitle.className="section-title main";
