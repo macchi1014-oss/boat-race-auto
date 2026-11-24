@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ボートレース予想実績</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f9;color:#202938;font-family:Arial,"Noto Sans JP",sans-serif}
+header{background:#172b4d;color:white;padding:22px 16px}
+header h1{margin:0 0 8px;font-size:22px}
+header a{color:#b9d8ff}
+main{max-width:1100px;margin:auto;padding:16px}
+.note{background:#fff8df;padding:12px;border-radius:9px;font-size:13px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.card{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 7px #0001}
+.card small{color:#667085}
+.num{font-size:24px;font-weight:bold;margin-top:7px}
+section{background:white;padding:16px;border-radius:10px;margin:14px 0;overflow:hidden}
+h2{font-size:17px;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap}
+th,td{padding:10px 8px;border-bottom:1px solid #e8ebf0;text-align:left}
+th{background:#f5f7fa}
+.tablewrap{overflow-x:auto}
+input,select{padding:10px;border:1px solid #ccd2dc;border-radius:7px;background:white;max-width:100%}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.barrow{display:flex;align-items:center;gap:8px;margin:9px 0;font-size:13px}
+.barlabel{width:90px}
+.barbg{height:17px;background:#edf0f5;border-radius:5px;flex:1;overflow:hidden}
+.bar{height:100%;background:#3977cf}
+.positive{color:#07834c}.negative{color:#d04444}
+.muted{color:#667085;font-size:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header>
+<h1>ボートレース予想実績</h1>
+<a href="./index.html">← 予想一覧に戻る</a>
+</header>
+<main>
+<div class="note">
+<strong>集計について</strong><br>
+本線3点・押さえ3点を各100円で購入したと仮定したシミュレーションです。実際の購入・払戻実績ではありません。
+</div>
+<div id="status" class="muted">実績データを読み込み中...</div>
+
+<div class="grid">
+<div class="card"><small>累計収支</small><div class="num" id="profit">--</div></div>
+<div class="card"><small>回収率</small><div class="num" id="rate">--</div></div>
+<div class="card"><small>的中率</small><div class="num" id="hit">--</div></div>
+<div class="card"><small>集計レース数</small><div class="num" id="count">--</div></div>
+</div>
+
+<section>
+<h2>本線・押さえ 成績比較</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>区分</th><th>的中</th><th>的中率</th><th>投資</th><th>払戻</th><th>回収率</th><th>収支</th></tr></thead>
+<tbody id="compare"></tbody>
+</table></div>
+</section>
+
+<section>
+<h2>日別収支</h2>
+<div id="daily" class="muted">データなし</div>
+</section>
+
+<section>
+<h2>開催場別成績</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>開催場</th><th>レース数</th><th>的中</th><th>投資</th><th>払戻</th><th>収支</th></tr></thead>
+<tbody id="venues"></tbody>
+</table></div>
+</section>
+
+<section>
+<h2>レース別結果</h2>
+<div class="filters">
+<input id="search" placeholder="開催場・日付などで検索">
+<select id="filter"><option value="all">すべて</option><option value="hit">的中のみ</option><option value="miss">不的中のみ</option></select>
+<select id="sort"><option value="date">日付が新しい順</option><option value="profit">収支が高い順</option><option value="return">払戻が高い順</option></select>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th>日付</th><th>開催場</th><th>R</th><th>結果</th><th>本線</th><th>押さえ</th><th>払戻</th><th>収支</th></tr></thead>
+<tbody id="history"></tbody>
+</table></div>
+<div id="shown" class="muted"></div>
+</section>
+</main>
+
+<script>
+const CSV_URL="./data/race_results.csv";
+const venueNames={
+1:"桐生",2:"戸田",3:"江戸川",4:"平和島",5:"多摩川",
+6:"浜名湖",7:"蒲郡",8:"常滑",9:"津",10:"三国",
+11:"びわこ",12:"住之江",13:"尼崎",14:"鳴門",15:"丸亀",
+16:"児島",17:"宮島",18:"徳山",19:"下関",20:"若松",
+21:"芦屋",22:"福岡",23:"唐津",24:"大村"
+};
+const yen=n=>Number(n||0).toLocaleString("ja-JP")+"円";
+const pct=(a,b)=>b?((a/b)*100).toFixed(1)+"%":"0.0%";
+function csvParse(text){
+ const lines=text.replace(/^\uFEFF/,"").trim().split(/\r?\n/);
+ const headers=lines.shift().split(",");
+ return lines.map(line=>{
+  const cols=line.split(",");
+  return Object.fromEntries(headers.map((h,i)=>[h,(cols[i]||"").trim()]));
+ });
+}
+function el(id){return document.getElementById(id)}
+function sum(rows,key){return rows.reduce((a,r)=>a+Number(r[key]||0),0)}
+function isHit(r){return Number(r.main_hit)===1||Number(r.backup_hit)===1}
+function render(rows){
+ const investment=sum(rows,"total_stake_yen");
+ const returns=sum(rows,"total_return_yen");
+ const profit=sum(rows,"profit_yen");
+ const hits=rows.filter(isHit).length;
+ el("profit").textContent=(profit>=0?"+":"")+yen(profit);
+ el("profit").className="num "+(profit>=0?"positive":"negative");
+ el("rate").textContent=pct(returns,investment);
+ el("hit").textContent=pct(hits,rows.length);
+ el("count").textContent=rows.length+"レース";
+
+ const mainHit=rows.filter(r=>Number(r.main_hit)===1).length;
+ const backupHit=rows.filter(r=>Number(r.backup_hit)===1).length;
+ const mainReturn=sum(rows,"main_return_yen");
+ const backupReturn=sum(rows,"backup_return_yen");
+ const stats=[
+ ["本線",mainHit,rows.length*300,mainReturn],
+ ["押さえ",backupHit,rows.length*300,backupReturn],
+ ["合計",hits,investment,returns]
+ ];
+ el("compare").innerHTML=stats.map(s=>{
+  const p=s[3]-s[2];
+  return `<tr><td>${s[0]}</td><td>${s[1]}</td><td>${pct(s[1],rows.length)}</td><td>${yen(s[2])}</td><td>${yen(s[3])}</td><td>${pct(s[3],s[2])}</td><td class="${p>=0?'positive':'negative'}">${p>=0?'+':''}${yen(p)}</td></tr>`;
+ }).join("");
+
+ const days={};
+ rows.forEach(r=>{
+  if(!days[r.date])days[r.date]=0;
+  days[r.date]+=Number(r.profit_yen||0);
+ });
+ const dayValues=Object.entries(days).sort((a,b)=>a[0].localeCompare(b[0]));
+ const max=Math.max(1,...dayValues.map(x=>Math.abs(x[1])));
+ el("daily").innerHTML=dayValues.map(([d,p])=>
+ `<div class="barrow"><span class="barlabel">${d}</span><div class="barbg"><div class="bar" style="width:${Math.abs(p)/max*100}%"></div></div><strong class="${p>=0?'positive':'negative'}">${p>=0?'+':''}${yen(p)}</strong></div>`
+ ).join("")||"データなし";
+
+ const groups={};
+ rows.forEach(r=>{
+  const k=r.stadium_number;
+  if(!groups[k])groups[k]=[];
+  groups[k].push(r);
+ });
+ el("venues").innerHTML=Object.entries(groups).sort((a,b)=>Number(a[0])-Number(b[0])).map(([k,rs])=>{
+  const p=sum(rs,"profit_yen");
+  return `<tr><td>${venueNames[k]||("場コード"+k)}</td><td>${rs.length}</td><td>${rs.filter(isHit).length}</td><td>${yen(sum(rs,"total_stake_yen"))}</td><td>${yen(sum(rs,"total_return_yen"))}</td><td class="${p>=0?'positive':'negative'}">${p>=0?'+':''}${yen(p)}</td></tr>`;
+ }).join("");
+
+ window.allRows=rows;
+ drawHistory();
+}
+function drawHistory(){
+ let rows=[...window.allRows];
+ const q=el("search").value.toLowerCase();
+ const f=el("filter").value;
+ const s=el("sort").value;
+ rows=rows.filter(r=>{
+  const name=venueNames[r.stadium_number]||r.stadium_number;
+  const match=[r.date,name,r.race_number,r.winning_combination].join(" ").toLowerCase().includes(q);
+  return match&&(f==="all"||(f==="hit"?isHit(r):!isHit(r)));
+ });
+ rows.sort((a,b)=>{
+  if(s==="profit")return Number(b.profit_yen)-Number(a.profit_yen);
+  if(s==="return")return Number(b.total_return_yen)-Number(a.total_return_yen);
+  return (b.date+"-"+b.race_number).localeCompare(a.date+"-"+a.race_number);
+ });
+ el("history").innerHTML=rows.map(r=>{
+  const p=Number(r.profit_yen||0);
+  return `<tr><td>${r.date}</td><td>${venueNames[r.stadium_number]||r.stadium_number}</td><td>${r.race_number}R</td><td>${r.winning_combination||"-"}</td><td>${Number(r.main_hit)===1?"的中":"-"}</td><td>${Number(r.backup_hit)===1?"的中":"-"}</td><td>${yen(r.total_return_yen)}</td><td class="${p>=0?'positive':'negative'}">${p>=0?'+':''}${yen(p)}</td></tr>`;
+ }).join("");
+ el("shown").textContent=rows.length+"件表示";
+}
+["search","filter","sort"].forEach(id=>el(id).addEventListener("input",drawHistory));
+fetch(CSV_URL+"?t="+Date.now())
+.then(r=>{if(!r.ok)throw new Error("CSVを読み込めません");return r.text()})
+.then(text=>{const rows=csvParse(text);render(rows);el("status").textContent="実績データを読み込みました（"+rows.length+"レース）";})
+.catch(err=>{el("status").textContent="データ読み込みエラー："+err.message+"。GitHub Pagesの公開状態を確認してください。";});
+</script>
+</body>
+</html>
