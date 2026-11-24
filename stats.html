@@ -101,17 +101,120 @@ const venueNames={
 const yen=n=>Number(n||0).toLocaleString("ja-JP")+"円";
 const pct=(a,b)=>b?((a/b)*100).toFixed(1)+"%":"0.0%";
 function csvParse(text){
- const lines=text.replace(/^\uFEFF/,"").trim().split(/\r?\n/);
- const headers=lines.shift().split(",");
- return lines.map(line=>{
-  const cols=line.split(",");
-  return Object.fromEntries(headers.map((h,i)=>[h,(cols[i]||"").trim()]));
- });
+ const rows=[];
+ let row=[];
+ let field="";
+ let quoted=false;
+
+ text=text.replace(/^\uFEFF/,"");
+
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+
+  if(quoted){
+   if(c==='"'&&text[i+1]==='"'){
+    field+='"';
+    i++;
+   }else if(c==='"'){
+    quoted=false;
+   }else{
+    field+=c;
+   }
+  }else{
+   if(c==='"'){
+    quoted=true;
+   }else if(c===","){
+    row.push(field.trim());
+    field="";
+   }else if(c==="\n"){
+    row.push(field.trim());
+    rows.push(row);
+    row=[];
+    field="";
+   }else if(c!=="\r"){
+    field+=c;
+   }
+  }
+ }
+
+ if(field!==""||row.length){
+  row.push(field.trim());
+  rows.push(row);
+ }
+
+ const headers=rows.shift()||[];
+
+ return rows.filter(r=>r.some(v=>v!=="")).map(r=>
+  Object.fromEntries(headers.map((h,i)=>[h,(r[i]||"").trim()]))
+ );
 }
 function el(id){return document.getElementById(id)}
 function sum(rows,key){return rows.reduce((a,r)=>a+Number(r[key]||0),0)}
 function isHit(r){return Number(r.main_hit)===1||Number(r.backup_hit)===1}
-function render(rows){
+function confidenceKey(r){
+ return [
+  (r.date||"").trim(),
+  Number(r.stadium_number),
+  Number(r.race_number)
+ ].join("|");
+}
+
+function renderConfidence(results,predictions){
+ const predictionMap=new Map();
+
+ predictions.forEach(p=>{
+  predictionMap.set(confidenceKey(p),p);
+ });
+
+ const groups={};
+ let unmatched=0;
+ let blank=0;
+
+ results.forEach(r=>{
+  const p=predictionMap.get(confidenceKey(r));
+
+  if(!p){
+   unmatched++;
+   return;
+  }
+
+  const level=(p.confidence_level||"").trim();
+
+  if(!level){
+   blank++;
+   return;
+  }
+
+  if(!groups[level])groups[level]=[];
+  groups[level].push(r);
+ });
+
+ const levels=Object.entries(groups);
+
+ el("confidenceStats").innerHTML=levels.map(([level,rs])=>{
+  const investment=sum(rs,"total_stake_yen");
+  const returns=sum(rs,"total_return_yen");
+  const profit=returns-investment;
+  const hits=rs.filter(isHit).length;
+
+  return `<tr>
+   <td>${level}</td>
+   <td>${rs.length}</td>
+   <td>${hits}</td>
+   <td>${pct(hits,rs.length)}</td>
+   <td>${yen(investment)}</td>
+   <td>${yen(returns)}</td>
+   <td>${pct(returns,investment)}</td>
+   <td class="${profit>=0?'positive':'negative'}">${profit>=0?'+':''}${yen(profit)}</td>
+  </tr>`;
+ }).join("")||'<tr><td colspan="8">照合できるデータがありません</td></tr>';
+
+ el("confidenceStatus").textContent=
+  "照合対象："+(results.length-unmatched-blank)+"レース"+
+  " ／ 未照合："+unmatched+"レース"+
+  " ／ 信頼度なし："+blank+"レース";
+}
+ function render(rows){
  const investment=sum(rows,"total_stake_yen");
  const returns=sum(rows,"total_return_yen");
  const profit=sum(rows,"profit_yen");
@@ -183,10 +286,31 @@ function drawHistory(){
  el("shown").textContent=rows.length+"件表示";
 }
 ["search","filter","sort"].forEach(id=>el(id).addEventListener("input",drawHistory));
-fetch(CSV_URL+"?t="+Date.now())
-.then(r=>{if(!r.ok)throw new Error("CSVを読み込めません");return r.text()})
-.then(text=>{const rows=csvParse(text);render(rows);el("status").textContent="実績データを読み込みました（"+rows.length+"レース）";})
-.catch(err=>{el("status").textContent="データ読み込みエラー："+err.message+"。GitHub Pagesの公開状態を確認してください。";});
+Promise.all([
+ fetch(CSV_URL+"?t="+Date.now()),
+ fetch(PREDICTIONS_URL+"?t="+Date.now())
+])
+.then(async responses=>{
+ if(!responses[0].ok||!responses[1].ok){
+  throw new Error("CSVを読み込めません");
+ }
+ return Promise.all(responses.map(r=>r.text()));
+})
+.then(([resultText,predictionText])=>{
+ const rows=csvParse(resultText);
+ const predictions=csvParse(predictionText);
+
+ render(rows);
+ renderConfidence(rows,predictions);
+
+ el("status").textContent=
+  "実績データを読み込みました（"+rows.length+"レース）";
+})
+.catch(err=>{
+ el("status").textContent=
+  "データ読み込みエラー："+err.message+
+  "。CSVの場所や公開状態を確認してください。";
+});
 </script>
 </body>
 </html>
