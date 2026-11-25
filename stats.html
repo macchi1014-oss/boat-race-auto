@@ -805,6 +805,18 @@ if (actualSecond) {
 el("secondBreakdown").innerHTML = secondBreakdownRows.map(([name, count, rate]) => `
   <tr><td>${name}</td><td>${count}</td><td>${rate}</td></tr>
 `).join("");
+el("secondRankComparison").innerHTML = [
+  ["現行評価", secondRankStats.current],
+  ["モーター＋平均ST", secondRankStats.motorST]
+].map(([name, stat]) => `
+  <tr>
+    <td>${name}</td>
+    <td>${stat.count}</td>
+    <td>${stat.count ? (stat.sum / stat.count).toFixed(2) + "位" : "-"}</td>
+    <td>${stat.top2}（${pct(stat.top2, stat.count)}）</td>
+    <td>${stat.top3}（${pct(stat.top3, stat.count)}）</td>
+  </tr>
+`).join("");
  el("analysisStatus").textContent =
     `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
 }
@@ -818,18 +830,7 @@ fetch("./data/race_analysis.csv?t=" + Date.now())
     renderRaceAnalysis(csvParse(text));
   })
   .catch(error => {
-el("secondRankComparison").innerHTML = [
-  ["現行評価", secondRankStats.current],
-  ["モーター＋平均ST", secondRankStats.motorST]
-].map(([name, stat]) => `
-  <tr>
-    <td>${name}</td>
-    <td>${stat.count}</td>
-    <td>${stat.count ? (stat.sum / stat.count).toFixed(2) + "位" : "-"}</td>
-    <td>${stat.top2}（${pct(stat.top2, stat.count)}）</td>
-    <td>${stat.top3}（${pct(stat.top3, stat.count)}）</td>
-  </tr>
-`).join("");
+
    el("analysisStatus").textContent =
       "分析データ読み込みエラー：" + error.message;
   });
