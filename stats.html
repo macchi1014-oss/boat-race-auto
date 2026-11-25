@@ -575,6 +575,10 @@ const secondRankStats = {
   current: {sum: 0, count: 0, top2: 0, top3: 0},
   motorST: {sum: 0, count: 0, top2: 0, top3: 0}
 };
+ const secondRankDistribution = {
+  current: [0, 0, 0, 0, 0, 0],
+  motorST: [0, 0, 0, 0, 0, 0]
+};
  rows.forEach(r => {
     let racers = {};
     try {
