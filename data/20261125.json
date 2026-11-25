@@ -28289,97 +28289,154 @@
               "date": "2026-11-25",
               "stadium_number": 12,
               "race_number": 11,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "0m",
+              "wind_speed": 0,
+              "wind_direction_number_source": "無風",
+              "wind_direction_number": 17,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "11.0℃",
+              "water_temperature": 11,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4737",
+                  "number": 4737,
+                  "name": "竹井 貴史"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".22",
+                  "start_timing": 0.22,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4505",
+                  "number": 4505,
+                  "name": "島田 賢人"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "3333",
+                  "number": 3333,
+                  "name": "丸尾 義孝"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "3833",
+                  "number": 3833,
+                  "name": "中辻 博訓"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".18",
+                  "start_timing": 0.18,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "5075",
+                  "number": 5075,
+                  "name": "中島 秀治"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4199",
+                  "number": 4199,
+                  "name": "北川 潤二"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-2-5",
+                    "amount": 1430,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=5",
+                    "amount": 910,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-2",
+                    "amount": 310,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=2",
+                    "amount": 240,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=2",
+                    "amount": 120,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=5",
+                    "amount": 240,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=5",
+                    "amount": 370,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  },
+                  {
+                    "combination": "2",
+                    "amount": 200,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -28610,15 +28667,15 @@
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 1,
+                  "start_timing_source": ".14",
+                  "start_timing": 0.14,
                   "weight_source": "47.0kg",
                   "weight": 47,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.88",
+                  "exhibition_time": 6.88,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28632,15 +28689,15 @@
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 2,
+                  "start_timing_source": ".12",
+                  "start_timing": 0.12,
                   "weight_source": "48.8kg",
                   "weight": 48.8,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.77",
+                  "exhibition_time": 6.77,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28648,15 +28705,15 @@
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 3,
+                  "start_timing_source": ".29",
+                  "start_timing": 0.29,
                   "weight_source": "50.9kg",
                   "weight": 50.9,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.77",
+                  "exhibition_time": 6.77,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28664,15 +28721,15 @@
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 4,
+                  "start_timing_source": ".03",
+                  "start_timing": 0.03,
                   "weight_source": "48.6kg",
                   "weight": 48.6,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.81",
+                  "exhibition_time": 6.81,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28680,15 +28737,15 @@
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 5,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
                   "weight_source": "56.4kg",
                   "weight": 56.4,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.81",
+                  "exhibition_time": 6.81,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28696,15 +28753,15 @@
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 6,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
                   "weight_source": "54.2kg",
                   "weight": 54.2,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.83",
+                  "exhibition_time": 6.83,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -28716,97 +28773,154 @@
               "date": "2026-11-25",
               "stadium_number": 12,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "0m",
+              "wind_speed": 0,
+              "wind_direction_number_source": "無風",
+              "wind_direction_number": 17,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "8.0℃",
+              "air_temperature": 8,
+              "water_temperature_source": "11.0℃",
+              "water_temperature": 11,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".11",
+                  "start_timing": 0.11,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "3994",
+                  "number": 3994,
+                  "name": "小野 桜"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "5367",
+                  "number": 5367,
+                  "name": "赤松 咲香"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4965",
+                  "number": 4965,
+                  "name": "福岡 泉水"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".11",
+                  "start_timing": 0.11,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "5471",
+                  "number": 5471,
+                  "name": "田中 結"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "5418",
+                  "number": 5418,
+                  "name": "堀内 亜海"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "5497",
+                  "number": 5497,
+                  "name": "藤山 芽依"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-4-2",
+                    "amount": 2470,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=4",
+                    "amount": 780,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-4",
+                    "amount": 790,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=4",
+                    "amount": 350,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=4",
+                    "amount": 160,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=2",
+                    "amount": 290,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=4",
+                    "amount": 330,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 140,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 120,
+                    "label": null
+                  },
+                  {
+                    "combination": "4",
+                    "amount": 180,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -39798,97 +39912,154 @@
               "date": "2026-11-25",
               "stadium_number": 15,
               "race_number": 11,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "3m",
+              "wind_speed": 3,
+              "wind_direction_number_source": "南東",
+              "wind_direction_number": 7,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "17.0℃",
+              "water_temperature": 17,
+              "technique_number_source": "差し",
+              "technique_number": 2,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".16",
+                  "start_timing": 0.16,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4351",
+                  "number": 4351,
+                  "name": "里岡 右貴"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "5150",
+                  "number": 5150,
+                  "name": "坂本 雄紀"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".04",
+                  "start_timing": 0.04,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "3541",
+                  "number": 3541,
+                  "name": "三嶌 誠司"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4748",
+                  "number": 4748,
+                  "name": "渡邉 雄朗"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".25",
+                  "start_timing": 0.25,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4588",
+                  "number": 4588,
+                  "name": "田中 京介"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "4365",
+                  "number": 4365,
+                  "name": "盛本 真輔"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "4-3-6",
+                    "amount": 58950,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "3=4=6",
+                    "amount": 13740,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "4-3",
+                    "amount": 9910,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "3=4",
+                    "amount": 4270,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "3=4",
+                    "amount": 430,
+                    "label": null
+                  },
+                  {
+                    "combination": "4=6",
+                    "amount": 1240,
+                    "label": null
+                  },
+                  {
+                    "combination": "3=6",
+                    "amount": 680,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "4",
+                    "amount": 1100,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "4",
+                    "amount": 380,
+                    "label": null
+                  },
+                  {
+                    "combination": "3",
+                    "amount": 330,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -39951,8 +40122,8 @@
                 "birthplace_number": 33,
                 "age_source": "54歳",
                 "age": 54,
-                "weight_source": "50.0kg",
-                "weight": 50,
+                "weight_source": "49.5kg",
+                "weight": 49.5,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -39983,8 +40154,8 @@
                 "birthplace_number": 26,
                 "age_source": "24歳",
                 "age": 24,
-                "weight_source": "51.5kg",
-                "weight": 51.5,
+                "weight_source": "51.0kg",
+                "weight": 51,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -40015,8 +40186,8 @@
                 "birthplace_number": 24,
                 "age_source": "35歳",
                 "age": 35,
-                "weight_source": "52.6kg",
-                "weight": 52.6,
+                "weight_source": "52.2kg",
+                "weight": 52.2,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -40047,8 +40218,8 @@
                 "birthplace_number": 12,
                 "age_source": "47歳",
                 "age": 47,
-                "weight_source": "52.9kg",
-                "weight": 52.9,
+                "weight_source": "53.0kg",
+                "weight": 53,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -40104,112 +40275,118 @@
               "date": "2026-11-25",
               "stadium_number": 15,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
+              "wind_speed_source": "3m",
+              "wind_speed": 3,
+              "wind_direction_number_source": "南東",
+              "wind_direction_number": 7,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "17.0℃",
+              "water_temperature": 17,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 1,
+                  "start_timing_source": "F.04",
+                  "start_timing": -0.04,
+                  "weight_source": "52.0kg",
+                  "weight": 52,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.76",
+                  "exhibition_time": 6.76,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
-                  "parts": []
+                  "parts": [
+                    {
+                      "number_source": "キャブ",
+                      "number": 4,
+                      "quantity": null
+                    }
+                  ]
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 2,
+                  "start_timing_source": "F.03",
+                  "start_timing": -0.03,
+                  "weight_source": "49.5kg",
+                  "weight": 49.5,
+                  "weight_adjustment_source": "2.5",
+                  "weight_adjustment": 2.5,
+                  "exhibition_time_source": "6.76",
+                  "exhibition_time": 6.76,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 3,
+                  "start_timing_source": "F.06",
+                  "start_timing": -0.06,
+                  "weight_source": "51.0kg",
+                  "weight": 51,
+                  "weight_adjustment_source": "1.0",
+                  "weight_adjustment": 1,
+                  "exhibition_time_source": "6.81",
+                  "exhibition_time": 6.81,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 4,
+                  "start_timing_source": ".04",
+                  "start_timing": 0.04,
+                  "weight_source": "52.2kg",
+                  "weight": 52.2,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.76",
+                  "exhibition_time": 6.76,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 5,
+                  "start_timing_source": ".18",
+                  "start_timing": 0.18,
+                  "weight_source": "53.0kg",
+                  "weight": 53,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.82",
+                  "exhibition_time": 6.82,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 6,
+                  "start_timing_source": ".17",
+                  "start_timing": 0.17,
+                  "weight_source": "52.0kg",
+                  "weight": 52,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.67",
+                  "exhibition_time": 6.67,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 }
@@ -40219,97 +40396,154 @@
               "date": "2026-11-25",
               "stadium_number": 15,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "3m",
+              "wind_speed": 3,
+              "wind_direction_number_source": "南東",
+              "wind_direction_number": 7,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "17.0℃",
+              "water_temperature": 17,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".10",
+                  "start_timing": 0.1,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4544",
+                  "number": 4544,
+                  "name": "松田 大志郎"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "3822",
+                  "number": 3822,
+                  "name": "平尾 崇典"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".12",
+                  "start_timing": 0.12,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "5280",
+                  "number": 5280,
+                  "name": "廣瀬 凜"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".24",
+                  "start_timing": 0.24,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "4796",
+                  "number": 4796,
+                  "name": "春園 功太"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".25",
+                  "start_timing": 0.25,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "3966",
+                  "number": 3966,
+                  "name": "作間 章"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4448",
+                  "number": 4448,
+                  "name": "青木 玄太"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-6-4",
+                    "amount": 7610,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=4=6",
+                    "amount": 1380,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-6",
+                    "amount": 1420,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=6",
+                    "amount": 1600,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=6",
+                    "amount": 440,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=4",
+                    "amount": 170,
+                    "label": null
+                  },
+                  {
+                    "combination": "4=6",
+                    "amount": 440,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 220,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  },
+                  {
+                    "combination": "6",
+                    "amount": 370,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -56992,97 +57226,154 @@
               "date": "2026-11-25",
               "stadium_number": 19,
               "race_number": 11,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "2m",
+              "wind_speed": 2,
+              "wind_direction_number_source": "北西",
+              "wind_direction_number": 15,
+              "wave_height_source": "2cm",
+              "wave_height": 2,
+              "weather_number_source": "曇り",
+              "weather_number": 2,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "18.0℃",
+              "water_temperature": 18,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".17",
+                  "start_timing": 0.17,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4024",
+                  "number": 4024,
+                  "name": "井口 佳典"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4117",
+                  "number": 4117,
+                  "name": "廣中 智紗衣"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".18",
+                  "start_timing": 0.18,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "3826",
+                  "number": 3826,
+                  "name": "村田 修次"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".18",
+                  "start_timing": 0.18,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4518",
+                  "number": 4518,
+                  "name": "大須賀 友"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".22",
+                  "start_timing": 0.22,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4437",
+                  "number": 4437,
+                  "name": "中田 元泰"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".23",
+                  "start_timing": 0.23,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4258",
+                  "number": 4258,
+                  "name": "関根 彰人"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-4-3",
+                    "amount": 890,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=3=4",
+                    "amount": 300,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-4",
+                    "amount": 350,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=4",
+                    "amount": 390,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=4",
+                    "amount": 160,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=3",
+                    "amount": 110,
+                    "label": null
+                  },
+                  {
+                    "combination": "3=4",
+                    "amount": 250,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 110,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  },
+                  {
+                    "combination": "4",
+                    "amount": 170,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -57313,15 +57604,15 @@
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 1,
+                  "start_timing_source": ".05",
+                  "start_timing": 0.05,
                   "weight_source": "54.8kg",
                   "weight": 54.8,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.74",
+                  "exhibition_time": 6.74,
                   "tilt_adjustment_source": "0.0",
                   "tilt_adjustment": 0,
                   "propeller": null,
@@ -57329,15 +57620,15 @@
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 2,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
                   "weight_source": "47.0kg",
                   "weight": 47,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.81",
+                  "exhibition_time": 6.81,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -57345,15 +57636,15 @@
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 3,
+                  "start_timing_source": ".06",
+                  "start_timing": 0.06,
                   "weight_source": "55.1kg",
                   "weight": 55.1,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.69",
+                  "exhibition_time": 6.69,
                   "tilt_adjustment_source": "0.0",
                   "tilt_adjustment": 0,
                   "propeller": null,
@@ -57361,15 +57652,15 @@
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 4,
+                  "start_timing_source": ".11",
+                  "start_timing": 0.11,
                   "weight_source": "52.0kg",
                   "weight": 52,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.77",
+                  "exhibition_time": 6.77,
                   "tilt_adjustment_source": "0.0",
                   "tilt_adjustment": 0,
                   "propeller": null,
@@ -57377,15 +57668,15 @@
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 5,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
                   "weight_source": "50.5kg",
                   "weight": 50.5,
                   "weight_adjustment_source": "1.5",
                   "weight_adjustment": 1.5,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.80",
+                  "exhibition_time": 6.8,
                   "tilt_adjustment_source": "0.0",
                   "tilt_adjustment": 0,
                   "propeller": null,
@@ -57393,15 +57684,15 @@
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
+                  "course_number": 6,
+                  "start_timing_source": ".12",
+                  "start_timing": 0.12,
                   "weight_source": "57.7kg",
                   "weight": 57.7,
                   "weight_adjustment_source": "0.0",
                   "weight_adjustment": 0,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
+                  "exhibition_time_source": "6.79",
+                  "exhibition_time": 6.79,
                   "tilt_adjustment_source": "-0.5",
                   "tilt_adjustment": -0.5,
                   "propeller": null,
@@ -57413,97 +57704,154 @@
               "date": "2026-11-25",
               "stadium_number": 19,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "1m",
+              "wind_speed": 1,
+              "wind_direction_number_source": "北西",
+              "wind_direction_number": 15,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "曇り",
+              "weather_number": 2,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "18.0℃",
+              "water_temperature": 18,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".04",
+                  "start_timing": 0.04,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4331",
+                  "number": 4331,
+                  "name": "三好 勇人"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".08",
+                  "start_timing": 0.08,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "5153",
+                  "number": 5153,
+                  "name": "佐藤 ほのか"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".12",
+                  "start_timing": 0.12,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4877",
+                  "number": 4877,
+                  "name": "鈴谷 一平"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "3757",
+                  "number": 3757,
+                  "name": "畑 和宏"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4706",
+                  "number": 4706,
+                  "name": "三浦 洋次朗"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".16",
+                  "start_timing": 0.16,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4572",
+                  "number": 4572,
+                  "name": "渡部 悟"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-3-2",
+                    "amount": 1540,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=3",
+                    "amount": 960,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-3",
+                    "amount": 270,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=3",
+                    "amount": 150,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=3",
+                    "amount": 130,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=2",
+                    "amount": 530,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=3",
+                    "amount": 460,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 140,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  },
+                  {
+                    "combination": "3",
+                    "amount": 100,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -63096,97 +63444,154 @@
               "date": "2026-11-25",
               "stadium_number": 20,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "4m",
+              "wind_speed": 4,
+              "wind_direction_number_source": "西北西",
+              "wind_direction_number": 14,
+              "wave_height_source": "4cm",
+              "wave_height": 4,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "13.0℃",
+              "water_temperature": 13,
+              "technique_number_source": "まくり差し",
+              "technique_number": 4,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".17",
+                  "start_timing": 0.17,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "3590",
+                  "number": 3590,
+                  "name": "濱野谷 憲吾"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "3959",
+                  "number": 3959,
+                  "name": "坪井 康晴"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
+                  "place_number_source": "エ",
+                  "place_number": 8,
+                  "number_source": "4566",
+                  "number": 4566,
+                  "name": "塩田 北斗"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4044",
+                  "number": 4044,
+                  "name": "湯川 浩司"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".31",
+                  "start_timing": 0.31,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4266",
+                  "number": 4266,
+                  "name": "長田 頼宗"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".25",
+                  "start_timing": 0.25,
+                  "place_number_source": "転",
+                  "place_number": 9,
+                  "number_source": "4324",
+                  "number": 4324,
+                  "name": "海野 康志郎"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "4-1-2",
+                    "amount": 5090,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=4",
+                    "amount": 520,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "4-1",
+                    "amount": 1250,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=4",
+                    "amount": 430,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=4",
+                    "amount": 200,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=4",
+                    "amount": 370,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=2",
+                    "amount": 160,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "4",
+                    "amount": 230,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "4",
+                    "amount": 150,
+                    "label": null
+                  },
+                  {
+                    "combination": "1",
+                    "amount": 110,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -74059,97 +74464,154 @@
               "date": "2026-11-25",
               "stadium_number": 24,
               "race_number": 11,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "2m",
+              "wind_speed": 2,
+              "wind_direction_number_source": "西",
+              "wind_direction_number": 13,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "8.0℃",
+              "air_temperature": 8,
+              "water_temperature_source": "15.0℃",
+              "water_temperature": 15,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".06",
+                  "start_timing": 0.06,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "3623",
+                  "number": 3623,
+                  "name": "深川 真二"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".09",
+                  "start_timing": 0.09,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "3499",
+                  "number": 3499,
+                  "name": "市川 哲也"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".06",
+                  "start_timing": 0.06,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "4027",
+                  "number": 4027,
+                  "name": "松江 秀徳"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".22",
+                  "start_timing": 0.22,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4792",
+                  "number": 4792,
+                  "name": "杉村 賢也"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".10",
+                  "start_timing": 0.1,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4643",
+                  "number": 4643,
+                  "name": "近江 翔吾"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".04",
+                  "start_timing": 0.04,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4954",
+                  "number": 4954,
+                  "name": "内山 峻輔"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-5-3",
+                    "amount": 2650,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=3=5",
+                    "amount": 760,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-5",
+                    "amount": 540,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=5",
+                    "amount": 690,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=5",
+                    "amount": 360,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=3",
+                    "amount": 530,
+                    "label": null
+                  },
+                  {
+                    "combination": "3=5",
+                    "amount": 950,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 150,
+                    "label": null
+                  },
+                  {
+                    "combination": "5",
+                    "amount": 210,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -74212,8 +74674,8 @@
                 "birthplace_number": 40,
                 "age_source": "50歳",
                 "age": 50,
-                "weight_source": "52.1kg",
-                "weight": 52.1,
+                "weight_source": "52.2kg",
+                "weight": 52.2,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -74244,8 +74706,8 @@
                 "birthplace_number": 22,
                 "age_source": "45歳",
                 "age": 45,
-                "weight_source": "52.8kg",
-                "weight": 52.8,
+                "weight_source": "52.1kg",
+                "weight": 52.1,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -74308,8 +74770,8 @@
                 "birthplace_number": 34,
                 "age_source": "29歳",
                 "age": 29,
-                "weight_source": "52.5kg",
-                "weight": 52.5,
+                "weight_source": "52.0kg",
+                "weight": 52,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -74340,8 +74802,8 @@
                 "birthplace_number": 23,
                 "age_source": "46歳",
                 "age": 46,
-                "weight_source": "53.8kg",
-                "weight": 53.8,
+                "weight_source": "54.0kg",
+                "weight": 54,
                 "flying_count_source": "F0",
                 "flying_count": 0,
                 "late_count_source": "L0",
@@ -74365,112 +74827,112 @@
               "date": "2026-11-25",
               "stadium_number": 24,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
+              "wind_speed_source": "2m",
+              "wind_speed": 2,
+              "wind_direction_number_source": "西",
+              "wind_direction_number": 13,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "8.0℃",
+              "air_temperature": 8,
+              "water_temperature_source": "15.0℃",
+              "water_temperature": 15,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 1,
+                  "start_timing_source": ".02",
+                  "start_timing": 0.02,
+                  "weight_source": "52.5kg",
+                  "weight": 52.5,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.80",
+                  "exhibition_time": 6.8,
+                  "tilt_adjustment_source": "-0.5",
+                  "tilt_adjustment": -0.5,
                   "propeller": null,
                   "parts": []
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 2,
+                  "start_timing_source": ".11",
+                  "start_timing": 0.11,
+                  "weight_source": "52.2kg",
+                  "weight": 52.2,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.84",
+                  "exhibition_time": 6.84,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 3,
+                  "start_timing_source": ".01",
+                  "start_timing": 0.01,
+                  "weight_source": "52.1kg",
+                  "weight": 52.1,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.82",
+                  "exhibition_time": 6.82,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 4,
+                  "start_timing_source": ".09",
+                  "start_timing": 0.09,
+                  "weight_source": "47.0kg",
+                  "weight": 47,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.81",
+                  "exhibition_time": 6.81,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 5,
+                  "start_timing_source": "F.01",
+                  "start_timing": -0.01,
+                  "weight_source": "52.0kg",
+                  "weight": 52,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.82",
+                  "exhibition_time": 6.82,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "weight_source": null,
-                  "weight": null,
-                  "weight_adjustment_source": null,
-                  "weight_adjustment": null,
-                  "exhibition_time_source": null,
-                  "exhibition_time": null,
-                  "tilt_adjustment_source": null,
-                  "tilt_adjustment": null,
+                  "course_number": 6,
+                  "start_timing_source": "F.04",
+                  "start_timing": -0.04,
+                  "weight_source": "54.0kg",
+                  "weight": 54,
+                  "weight_adjustment_source": "0.0",
+                  "weight_adjustment": 0,
+                  "exhibition_time_source": "6.76",
+                  "exhibition_time": 6.76,
+                  "tilt_adjustment_source": "0.0",
+                  "tilt_adjustment": 0,
                   "propeller": null,
                   "parts": []
                 }
@@ -74480,97 +74942,154 @@
               "date": "2026-11-25",
               "stadium_number": 24,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "1m",
+              "wind_speed": 1,
+              "wind_direction_number_source": "北",
+              "wind_direction_number": 1,
+              "wave_height_source": "1cm",
+              "wave_height": 1,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "8.0℃",
+              "air_temperature": 8,
+              "water_temperature_source": "15.0℃",
+              "water_temperature": 15,
+              "technique_number_source": "差し",
+              "technique_number": 2,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".06",
+                  "start_timing": 0.06,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4645",
+                  "number": 4645,
+                  "name": "上村 純一"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "3898",
+                  "number": 3898,
+                  "name": "平田 忠則"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "4073",
+                  "number": 4073,
+                  "name": "大橋 純一郎"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".11",
+                  "start_timing": 0.11,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4556",
+                  "number": 4556,
+                  "name": "竹井 奈美"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".16",
+                  "start_timing": 0.16,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4991",
+                  "number": 4991,
+                  "name": "宗行 治哉"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".18",
+                  "start_timing": 0.18,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4131",
+                  "number": 4131,
+                  "name": "原 豊土"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "2-1-3",
+                    "amount": 3730,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=3",
+                    "amount": 310,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "2-1",
+                    "amount": 1140,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=2",
+                    "amount": 180,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=2",
+                    "amount": 130,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=3",
+                    "amount": 300,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=3",
+                    "amount": 150,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "2",
+                    "amount": 510,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "2",
+                    "amount": 110,
+                    "label": null
+                  },
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
