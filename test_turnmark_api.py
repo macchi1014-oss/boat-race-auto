@@ -1,4 +1,5 @@
 import requests
+import json
 
 URL = "https://turnmark.github.io/api/v1/2026/20260501.json"
 
@@ -26,17 +27,10 @@ def main():
     data = response.json()
     stadiums = data["programs"]["stadiums"]
 
-    total_races = 0
-    complete_races = 0
-    incomplete_races = 0
-    missing_races = 0
-
-    print("===== 1日分・全レースの3連単調査 =====")
+    print("===== オッズ欠損レースの艇情報調査 =====")
 
     for stadium_no, stadium in stadiums.items():
         for race_no, race in stadium.get("races", {}).items():
-
-            total_races += 1
 
             odds = race.get("odds") or {}
             values = inspect(odds.get("trifecta"))
@@ -46,37 +40,26 @@ def main():
                 for v in values
             )
 
-            nulls = sum(v is None for v in values)
-
-            invalid = sum(
-                not isinstance(v, (int, float)) and v is not None
-                for v in values
-            )
-
             if valid == 120:
-                complete_races += 1
-            else:
-                incomplete_races += 1
+                continue
 
-                if valid == 0:
-                    missing_races += 1
+            print("\n" + "=" * 40)
+            print(f"場 {stadium_no}・{race_no}R")
+            print(f"レース名: {race.get('title')}")
+            print(f"正常値: {valid} / 120")
 
-                print(
-                    f"\n場 {stadium_no}・{race_no}R"
-                )
-                print(f"レース名: {race.get('title')}")
-                print(
-                    f"正常値: {valid} / "
-                    f"null: {nulls} / "
-                    f"異常値: {invalid} / "
-                    f"項目数: {len(values)}"
-                )
+            print("\n----- オッズ以外のレース情報 -----")
 
-    print("\n===== 全体集計 =====")
-    print(f"対象レース数: {total_races}")
-    print(f"120通り取得: {complete_races}")
-    print(f"120通り未満: {incomplete_races}")
-    print(f"正常値0件: {missing_races}")
+            for key, value in race.items():
+                if key == "odds":
+                    continue
+
+                print(f"\n【{key}】")
+                print(json.dumps(
+                    value,
+                    ensure_ascii=False,
+                    indent=2
+                ))
 
 
 if __name__ == "__main__":
