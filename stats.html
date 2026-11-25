@@ -837,19 +837,6 @@ el("secondRankComparison").innerHTML = [
     <td>${stat.top3}（${pct(stat.top3, stat.count)}）</td>
   </tr>
 `).join("");
- el("analysisStatus").textContent =
-    `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
-}
-
-fetch("./data/race_analysis.csv?t=" + Date.now())
-  .then(response => {
-    if (!response.ok) throw new Error("分析CSVを読み込めません");
-    return response.text();
-  })
-  .then(text => {
-    renderRaceAnalysis(csvParse(text));
-  })
-  .catch(error => {
 el("secondRankDistribution").innerHTML = [1, 2, 3, 4, 5, 6].map(rank => {
   const currentCount = secondRankDistribution.current[rank - 1];
   const motorCount = secondRankDistribution.motorST[rank - 1];
@@ -863,6 +850,20 @@ el("secondRankDistribution").innerHTML = [1, 2, 3, 4, 5, 6].map(rank => {
     </tr>
   `;
 }).join("");
+ el("analysisStatus").textContent =
+    `分析対象：${rows.length}レース ／ 予想照合：${checked}レース`;
+}
+
+fetch("./data/race_analysis.csv?t=" + Date.now())
+  .then(response => {
+    if (!response.ok) throw new Error("分析CSVを読み込めません");
+    return response.text();
+  })
+  .then(text => {
+    renderRaceAnalysis(csvParse(text));
+  })
+  .catch(error => {
+
    el("analysisStatus").textContent =
       "分析データ読み込みエラー：" + error.message;
   });
