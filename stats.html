@@ -634,7 +634,9 @@ if (actualSecondForRank && hasFullFactors) {
 
     const rank = ranked.indexOf(String(actualSecondForRank)) + 1;
     const stat = secondRankStats[key];
-
+if (rank >= 1 && rank <= 6) {
+  secondRankDistribution[key][rank - 1]++;
+}
     stat.sum += rank;
     stat.count++;
 
