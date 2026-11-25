@@ -1,6 +1,6 @@
 import requests
 
-URL = "https://turnmark.github.io/api/v1/2026/20260503.json"
+URL = "https://turnmark.github.io/api/v1/2026/20260502.json"
 
 
 def inspect(value):
