@@ -103,11 +103,11 @@ def main():
     print("===== 正常レースと異常レースの比較 =====")
     print("比較日: 2026-05-03")
 
-    
-inspect_race(stadium, 9)
-inspect_race(stadium, 10)
-inspect_race(stadium, 11)
-inspect_race(stadium, 12)
+    inspect_race(stadium, 9)
+    inspect_race(stadium, 10)
+    inspect_race(stadium, 11)
+    inspect_race(stadium, 12)
+
 
 if __name__ == "__main__":
     main()
