@@ -833,7 +833,7 @@ el("secondBreakdown").innerHTML = secondBreakdownRows.map(([name, count, rate]) 
   <tr><td>${name}</td><td>${count}</td><td>${rate}</td></tr>
 `).join("");
 el("secondRankComparison").innerHTML = [
-  ["現行評価", secondRankStats.current],
+  ["共通4項目評価（展示除く）", secondRankStats.current],
   ["モーター＋平均ST", secondRankStats.motorST]
 ].map(([name, stat]) => `
   <tr>
