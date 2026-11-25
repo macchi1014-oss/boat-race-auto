@@ -13,6 +13,16 @@ EXPECTED = {
     "place": 12,
 }
 
+NAMES = {
+    "trifecta": "3連単",
+    "trio": "3連複",
+    "exacta": "2連単",
+    "quinella": "2連複",
+    "quinella_place": "拡連複",
+    "win": "単勝",
+    "place": "複勝",
+}
+
 
 def flatten(value):
     if isinstance(value, dict):
@@ -49,19 +59,15 @@ def main():
         for name in EXPECTED
     }
 
+    missing = {name: [] for name in EXPECTED}
     race_count = 0
-    trifecta_complete = 0
-    trifecta_zero = 0
-    trifecta_partial = 0
 
-    print("===== 2026年5月3日 全レースオッズ集計 =====")
+    print("===== 2026年5月3日 券種別欠損調査 =====")
 
     for stadium_no, stadium in stadiums.items():
         for race_no, race in stadium.get("races", {}).items():
             race_count += 1
             odds = race.get("odds") or {}
-
-            race_valid = {}
 
             for name, expected in EXPECTED.items():
                 values = flatten(odds.get(name))
@@ -73,40 +79,44 @@ def main():
 
                 if valid == expected:
                     totals[name]["complete"] += 1
+                else:
+                    missing[name].append({
+                        "stadium": stadium_no,
+                        "race": race_no,
+                        "title": race.get("title"),
+                        "valid": valid,
+                        "items": len(values),
+                        "expected": expected,
+                    })
 
-                race_valid[name] = valid
+    print(f"\n対象レース数: {race_count}")
 
-            trifecta = race_valid["trifecta"]
+    print("\n===== 券種別の欠損レース一覧 =====")
 
-            if trifecta == EXPECTED["trifecta"]:
-                trifecta_complete += 1
-            elif trifecta == 0:
-                trifecta_zero += 1
-            else:
-                trifecta_partial += 1
+    for name, records in missing.items():
+        print(f"\n【{NAMES[name]}】")
 
-            if trifecta != EXPECTED["trifecta"]:
-                print(
-                    f"欠損: 場{stadium_no}・{race_no}R "
-                    f"{race.get('title')} "
-                    f"3連単 {trifecta}/120"
-                )
+        if not records:
+            print("欠損なし")
+            continue
 
-    print("\n===== 全体集計 =====")
-    print(f"対象レース数: {race_count}")
-    print(f"3連単120通り正常: {trifecta_complete}")
-    print(f"3連単全欠損: {trifecta_zero}")
-    print(f"3連単一部欠損: {trifecta_partial}")
+        for item in records:
+            print(
+                f"場{item['stadium']}・{item['race']}R "
+                f"{item['title']} "
+                f"正常値 {item['valid']} / {item['expected']} "
+                f"（項目数 {item['items']}）"
+            )
 
-    print("\n===== 券種別集計 =====")
+    print("\n===== 券種別の全体集計 =====")
 
     for name, result in totals.items():
         print(
-            f"{name}: "
-            f"{result['valid']} / {result['items']} "
-            f"正常値、"
+            f"{NAMES[name]}: "
+            f"{result['valid']} / {result['items']} 正常値、"
             f"{result['complete']} / {result['races']} レースで"
-            f"基準通り取得"
+            f"基準通り取得、"
+            f"欠損レース {len(missing[name])}"
         )
 
 
