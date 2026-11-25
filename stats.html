@@ -574,8 +574,57 @@ const secondRankStats = {
     } catch (e) {
       evaluation = {};
     }
+  
+const actualSecondForRank = Object.entries(racers).find(
+  ([boatNo, boat]) => Number(boat.place_number) === 2
+)?.[0];
 
-    Object.entries(factorNames).forEach(([key]) => {
+const hasFullFactors = Object.keys(factorNames).every(
+  factor => evaluation[factor]?.points &&
+    Object.keys(evaluation[factor].points).length > 0
+);
+if (actualSecondForRank && hasFullFactors) {
+  const allBoats = ["1", "2", "3", "4", "5", "6"];
+
+  const currentScores = Object.fromEntries(
+    allBoats.map(boatNo => [boatNo, 0])
+  );
+
+  Object.keys(factorNames).forEach(factor => {
+    Object.entries(evaluation[factor]?.points || {}).forEach(([boatNo, points]) => {
+      currentScores[String(boatNo)] += Number(points) || 0;
+    });
+  });
+
+  const motorSTScores = Object.fromEntries(
+    allBoats.map(boatNo => [boatNo, 0])
+  );
+
+  ["motor_top_2_percent", "average_start_timing"].forEach(factor => {
+    Object.entries(evaluation[factor]?.points || {}).forEach(([boatNo, points]) => {
+      motorSTScores[String(boatNo)] += Number(points) || 0;
+    });
+  });
+
+  [
+    ["current", currentScores],
+    ["motorST", motorSTScores]
+  ].forEach(([key, scores]) => {
+    const ranked = [...allBoats].sort((a, b) =>
+      scores[b] - scores[a] || Number(a) - Number(b)
+    );
+
+    const rank = ranked.indexOf(String(actualSecondForRank)) + 1;
+    const stat = secondRankStats[key];
+
+    stat.sum += rank;
+    stat.count++;
+
+    if (rank <= 2) stat.top2++;
+    if (rank <= 3) stat.top3++;
+  });
+}  
+  Object.entries(factorNames).forEach(([key]) => {
       const ranking = evaluation[key]?.ranking;
       if (!Array.isArray(ranking)) return;
 
@@ -769,7 +818,19 @@ fetch("./data/race_analysis.csv?t=" + Date.now())
     renderRaceAnalysis(csvParse(text));
   })
   .catch(error => {
-    el("analysisStatus").textContent =
+el("secondRankComparison").innerHTML = [
+  ["現行評価", secondRankStats.current],
+  ["モーター＋平均ST", secondRankStats.motorST]
+].map(([name, stat]) => `
+  <tr>
+    <td>${name}</td>
+    <td>${stat.count}</td>
+    <td>${stat.count ? (stat.sum / stat.count).toFixed(2) + "位" : "-"}</td>
+    <td>${stat.top2}（${pct(stat.top2, stat.count)}）</td>
+    <td>${stat.top3}（${pct(stat.top3, stat.count)}）</td>
+  </tr>
+`).join("");
+   el("analysisStatus").textContent =
       "分析データ読み込みエラー：" + error.message;
   });
 
