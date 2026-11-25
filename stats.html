@@ -597,7 +597,14 @@ const actualSecondForRank = Object.entries(racers).find(
   ([boatNo, boat]) => Number(boat.place_number) === 2
 )?.[0];
 
-const hasFullFactors = Object.keys(factorNames).every(
+const comparisonFactors = [
+  "national_win_rate",
+  "local_win_rate",
+  "motor_top_2_percent",
+  "average_start_timing"
+];
+
+const hasFullFactors = comparisonFactors.every(
   factor => evaluation[factor]?.points &&
     Object.keys(evaluation[factor].points).length > 0
 );
