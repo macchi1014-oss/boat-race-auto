@@ -118,13 +118,10 @@ def predict_race(race):
         available = sum(
             value is not None for value in values.values()
         )
-
+       
         if available < 6:
-            missing_metrics.append(field)    
+            missing_metrics.append(field)
             result = {}
-            available = sum(
-            value is not None for value in values.values()
-)
         if result:
             used_metrics += 1
 
@@ -151,7 +148,7 @@ def predict_race(race):
             )
 
     if used_metrics < 3:
-    return None
+        return None
 
     top_boats = sorted(
         scores,
