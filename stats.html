@@ -850,7 +850,19 @@ fetch("./data/race_analysis.csv?t=" + Date.now())
     renderRaceAnalysis(csvParse(text));
   })
   .catch(error => {
+el("secondRankDistribution").innerHTML = [1, 2, 3, 4, 5, 6].map(rank => {
+  const currentCount = secondRankDistribution.current[rank - 1];
+  const motorCount = secondRankDistribution.motorST[rank - 1];
+  const total = secondRankStats.current.count;
 
+  return `
+    <tr>
+      <td>${rank}位</td>
+      <td>${currentCount}（${pct(currentCount, total)}）</td>
+      <td>${motorCount}（${pct(motorCount, total)}）</td>
+    </tr>
+  `;
+}).join("");
    el("analysisStatus").textContent =
       "分析データ読み込みエラー：" + error.message;
   });
