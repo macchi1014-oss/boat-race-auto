@@ -615,11 +615,11 @@ if (actualSecondForRank && hasFullFactors) {
     allBoats.map(boatNo => [boatNo, 0])
   );
 
-  Object.keys(factorNames).forEach(factor => {
-    Object.entries(evaluation[factor]?.points || {}).forEach(([boatNo, points]) => {
-      currentScores[String(boatNo)] += Number(points) || 0;
-    });
+  comparisonFactors.forEach(factor => {
+  Object.entries(evaluation[factor]?.points || {}).forEach(([boatNo, points]) => {
+    currentScores[String(boatNo)] += Number(points) || 0;
   });
+});
 
   const motorSTScores = Object.fromEntries(
     allBoats.map(boatNo => [boatNo, 0])
