@@ -259,7 +259,7 @@ def write_csv(path, fields, records):
         writer.writerows(records)
 
 def record_prediction_snapshots(stadiums, prediction_map, now):
-    last_signatures = {}
+    last_snapshots = {}
 
     if os.path.exists(SNAPSHOT_FILE):
         with open(SNAPSHOT_FILE, encoding="utf-8") as f:
@@ -271,7 +271,10 @@ def record_prediction_snapshots(stadiums, prediction_map, now):
                         str(old["stadium_number"]),
                         str(old["race_number"])
                     )
-                    last_signatures[key] = old.get("signature")
+                    last_snapshots[key] = {
+                        "signature": old.get("signature"),
+                        "captured_at": old.get("captured_at")
+                    }
                 except (json.JSONDecodeError, KeyError):
                     continue
 
@@ -316,7 +319,24 @@ def record_prediction_snapshots(stadiums, prediction_map, now):
                 ).encode("utf-8")
             ).hexdigest()
 
-            if last_signatures.get(key) == signature:
+            previous = last_snapshots.get(key) or {}
+            should_record = previous.get("signature") != signature
+
+            # 締切30分前から、情報が同じでも約10分ごとに記録
+            if not should_record and deadline - now <= timedelta(minutes=30):
+                previous_time = previous.get("captured_at")
+                if previous_time:
+                    try:
+                        previous_dt = datetime.fromisoformat(previous_time)
+                        if previous_dt.tzinfo is None:
+                            previous_dt = previous_dt.replace(tzinfo=JST)
+                        should_record = now - previous_dt >= timedelta(minutes=10)
+                    except ValueError:
+                        should_record = True
+                else:
+                    should_record = True
+
+            if not should_record:
                 continue
 
             record = {
@@ -326,7 +346,10 @@ def record_prediction_snapshots(stadiums, prediction_map, now):
             }
 
             records.append(record)
-            last_signatures[key] = signature
+            last_snapshots[key] = {
+                "signature": signature,
+                "captured_at": record["captured_at"]
+            }
 
     if records:
         with open(SNAPSHOT_FILE, "a", encoding="utf-8") as f:
