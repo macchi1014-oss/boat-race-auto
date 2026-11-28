@@ -5139,97 +5139,154 @@
               "date": "2026-11-28",
               "stadium_number": 1,
               "race_number": 11,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "4m",
+              "wind_speed": 4,
+              "wind_direction_number_source": "北北東",
+              "wind_direction_number": 2,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "11.0℃",
+              "water_temperature": 11,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".17",
+                  "start_timing": 0.17,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "5051",
+                  "number": 5051,
+                  "name": "松本 純平"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".13",
+                  "start_timing": 0.13,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "5029",
+                  "number": 5029,
+                  "name": "中 亮太"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".16",
+                  "start_timing": 0.16,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4366",
+                  "number": 4366,
+                  "name": "前沢 丈史"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".19",
+                  "start_timing": 0.19,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4911",
+                  "number": 4911,
+                  "name": "片岡 大地"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".17",
+                  "start_timing": 0.17,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4389",
+                  "number": 4389,
+                  "name": "伊藤 喜智"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "5125",
+                  "number": 5125,
+                  "name": "高井 雄基"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-3-2",
+                    "amount": 580,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=3",
+                    "amount": 200,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-3",
+                    "amount": 250,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=3",
+                    "amount": 250,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=3",
+                    "amount": 110,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=2",
+                    "amount": 130,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=3",
+                    "amount": 220,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 100,
+                    "label": null
+                  },
+                  {
+                    "combination": "3",
+                    "amount": 110,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -5445,12 +5502,12 @@
               "date": "2026-11-28",
               "stadium_number": 1,
               "race_number": 12,
-              "wind_speed_source": "3m",
-              "wind_speed": 3,
+              "wind_speed_source": "4m",
+              "wind_speed": 4,
               "wind_direction_number_source": "北北東",
               "wind_direction_number": 2,
-              "wave_height_source": "2cm",
-              "wave_height": 2,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
               "weather_number_source": "晴",
               "weather_number": 1,
               "air_temperature_source": "9.0℃",
@@ -5566,97 +5623,154 @@
               "date": "2026-11-28",
               "stadium_number": 1,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "4m",
+              "wind_speed": 4,
+              "wind_direction_number_source": "北北東",
+              "wind_direction_number": 2,
+              "wave_height_source": "3cm",
+              "wave_height": 3,
+              "weather_number_source": "晴",
+              "weather_number": 1,
+              "air_temperature_source": "9.0℃",
+              "air_temperature": 9,
+              "water_temperature_source": "11.0℃",
+              "water_temperature": 11,
+              "technique_number_source": "逃げ",
+              "technique_number": 1,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4832",
+                  "number": 4832,
+                  "name": "権藤 俊光"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".20",
+                  "start_timing": 0.2,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "5034",
+                  "number": 5034,
+                  "name": "若林 義人"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4790",
+                  "number": 4790,
+                  "name": "柳内 敬太"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".27",
+                  "start_timing": 0.27,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "4403",
+                  "number": 4403,
+                  "name": "木下 大將"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".25",
+                  "start_timing": 0.25,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4962",
+                  "number": 4962,
+                  "name": "畑 竜生"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".32",
+                  "start_timing": 0.32,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "4551",
+                  "number": 4551,
+                  "name": "三川 昂暁"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "1-2-4",
+                    "amount": 1010,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=2=4",
+                    "amount": 550,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "1-2",
+                    "amount": 220,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "1=2",
+                    "amount": 170,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "1=2",
+                    "amount": 150,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=4",
+                    "amount": 200,
+                    "label": null
+                  },
+                  {
+                    "combination": "2=4",
+                    "amount": 360,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "1",
+                    "amount": 120,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "1",
+                    "amount": 110,
+                    "label": null
+                  },
+                  {
+                    "combination": "2",
+                    "amount": 120,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
@@ -28579,97 +28693,154 @@
               "date": "2026-11-28",
               "stadium_number": 7,
               "race_number": 12,
-              "wind_speed_source": null,
-              "wind_speed": null,
-              "wind_direction_number_source": null,
-              "wind_direction_number": null,
-              "wave_height_source": null,
-              "wave_height": null,
-              "weather_number_source": null,
-              "weather_number": null,
-              "air_temperature_source": null,
-              "air_temperature": null,
-              "water_temperature_source": null,
-              "water_temperature": null,
-              "technique_number_source": null,
-              "technique_number": null,
+              "wind_speed_source": "4m",
+              "wind_speed": 4,
+              "wind_direction_number_source": "北",
+              "wind_direction_number": 1,
+              "wave_height_source": "2cm",
+              "wave_height": 2,
+              "weather_number_source": "曇り",
+              "weather_number": 2,
+              "air_temperature_source": "13.0℃",
+              "air_temperature": 13,
+              "water_temperature_source": "12.0℃",
+              "water_temperature": 12,
+              "technique_number_source": "まくり",
+              "technique_number": 3,
               "remarks": null,
               "racers": {
                 "1": {
                   "entry_number": 1,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 1,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "3",
+                  "place_number": 3,
+                  "number_source": "3999",
+                  "number": 3999,
+                  "name": "大瀧 明日香"
                 },
                 "2": {
                   "entry_number": 2,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 2,
+                  "start_timing_source": ".23",
+                  "start_timing": 0.23,
+                  "place_number_source": "6",
+                  "place_number": 6,
+                  "number_source": "4414",
+                  "number": 4414,
+                  "name": "大澤 真菜"
                 },
                 "3": {
                   "entry_number": 3,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 3,
+                  "start_timing_source": ".26",
+                  "start_timing": 0.26,
+                  "place_number_source": "5",
+                  "place_number": 5,
+                  "number_source": "4940",
+                  "number": 4940,
+                  "name": "白石 有美"
                 },
                 "4": {
                   "entry_number": 4,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 4,
+                  "start_timing_source": ".21",
+                  "start_timing": 0.21,
+                  "place_number_source": "1",
+                  "place_number": 1,
+                  "number_source": "4464",
+                  "number": 4464,
+                  "name": "山下 友貴"
                 },
                 "5": {
                   "entry_number": 5,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 5,
+                  "start_timing_source": ".24",
+                  "start_timing": 0.24,
+                  "place_number_source": "4",
+                  "place_number": 4,
+                  "number_source": "5272",
+                  "number": 5272,
+                  "name": "松田 真実"
                 },
                 "6": {
                   "entry_number": 6,
-                  "course_number": null,
-                  "start_timing_source": null,
-                  "start_timing": null,
-                  "place_number_source": null,
-                  "place_number": null,
-                  "number_source": null,
-                  "number": null,
-                  "name": null
+                  "course_number": 6,
+                  "start_timing_source": ".15",
+                  "start_timing": 0.15,
+                  "place_number_source": "2",
+                  "place_number": 2,
+                  "number_source": "4240",
+                  "number": 4240,
+                  "name": "今井 裕梨"
                 }
               },
               "payouts": {
-                "trifecta": [],
-                "trio": [],
-                "exacta": [],
-                "quinella": [],
-                "quinella_place": [],
-                "win": [],
-                "place": []
+                "trifecta": [
+                  {
+                    "combination": "4-6-1",
+                    "amount": 7110,
+                    "label": null
+                  }
+                ],
+                "trio": [
+                  {
+                    "combination": "1=4=6",
+                    "amount": 490,
+                    "label": null
+                  }
+                ],
+                "exacta": [
+                  {
+                    "combination": "4-6",
+                    "amount": 3490,
+                    "label": null
+                  }
+                ],
+                "quinella": [
+                  {
+                    "combination": "4=6",
+                    "amount": 1760,
+                    "label": null
+                  }
+                ],
+                "quinella_place": [
+                  {
+                    "combination": "4=6",
+                    "amount": 380,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=4",
+                    "amount": 120,
+                    "label": null
+                  },
+                  {
+                    "combination": "1=6",
+                    "amount": 220,
+                    "label": null
+                  }
+                ],
+                "win": [
+                  {
+                    "combination": "4",
+                    "amount": 480,
+                    "label": null
+                  }
+                ],
+                "place": [
+                  {
+                    "combination": "4",
+                    "amount": 240,
+                    "label": null
+                  },
+                  {
+                    "combination": "6",
+                    "amount": 550,
+                    "label": null
+                  }
+                ]
               },
               "refunds": []
             }
